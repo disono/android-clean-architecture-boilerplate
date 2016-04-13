@@ -7,11 +7,13 @@ import disono.webmons.com.clean_architecture.presentation.presenters.MainPresent
 import disono.webmons.com.clean_architecture.presentation.presenters.base.AbstractPresenter;
 
 public class MainPresenterImplementation extends AbstractPresenter implements MainPresenter, UserInteractor.Callback {
-    private MainPresenter.View view;
+    private MainPresenter.View mview;
 
-    public MainPresenterImplementation(Executor executor, MainThread mainThread, View view) {
+    public MainPresenterImplementation(Executor executor,
+                                       MainThread mainThread,
+                                       View view) {
         super(executor, mainThread);
-        view = view;
+        mview = view;
     }
 
     @Override

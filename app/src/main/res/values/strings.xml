@@ -1,3 +1,13 @@
 <resources>
+    <!-- app -->
     <string name="app_name">Clean Architecture</string>
+
+    <!-- dialog -->
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_error_message">Ooops something went wrong!</string>
+    <string name="dialog_progress_message">Please wait while loading&#8230;</string>
+    <string name="dialog_button_ok">OK</string>
+
+    <!-- default messages -->
+    <string name="no_internet">No internet connection!</string>
 </resources>
