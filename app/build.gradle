@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         applicationId "disono.webmons.com.clean_architecture"
+        vectorDrawables.useSupportLibrary = true
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1

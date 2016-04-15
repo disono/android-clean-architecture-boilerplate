@@ -36,7 +36,7 @@ public abstract class AbstractInteractor implements Interactor {
         mIsCanceled = true;
         mIsRunning = false;
     }
-
+    
     public boolean isRunning() {
         return mIsRunning;
     }

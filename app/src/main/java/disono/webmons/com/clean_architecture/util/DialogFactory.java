@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 
 import disono.webmons.com.clean_architecture.R;
 
@@ -13,11 +14,13 @@ import disono.webmons.com.clean_architecture.R;
  * Created at: 2016-04-13 11:26 AM
  */
 public class DialogFactory {
-    public static Dialog error(Context context, String title, String message) {
+    public static Dialog error(Context context,
+                               String title, String message,
+                               DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
-        alertDialog.setNeutralButton(R.string.dialog_button_ok, null);
+        alertDialog.setNeutralButton(R.string.dialog_button_ok, onClickListener);
 
         return alertDialog.create();
     }
@@ -25,7 +28,7 @@ public class DialogFactory {
     public static Dialog error(Context context) {
         return error(context,
                 context.getString(R.string.dialog_error_title),
-                context.getString(R.string.dialog_error_message));
+                context.getString(R.string.dialog_error_message), null);
     }
 
     public static ProgressDialog progress(Context context, String message) {

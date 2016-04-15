@@ -1,21 +1,45 @@
 package disono.webmons.com.clean_architecture.presentation.ui.activities;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import disono.webmons.com.clean_architecture.R;
+import disono.webmons.com.clean_architecture.presentation.listeners.DialogInterfaceFactory;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter.View;
+import disono.webmons.com.clean_architecture.threading.MainThreadImplementation;
+import disono.webmons.com.clean_architecture.util.DialogFactory;
 
 /**
  * Author: Archie, Disono
- * Package: disono.webmons.com.clean_architecture.ui.activities
+ * Website: www.webmons.com
+ * License: Apache 2.0
  * Created at: 2016-04-12 11:26 AM
  */
 public class MainActivity extends AppCompatActivity implements View {
+    Context ctx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ctx = this.getApplication().getApplicationContext();
+
+        DialogFactory.error(this, "Error", "No internet connection!", new DialogInterfaceFactory().OnClick(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
+            }
+        })).show();
+
+        MainThreadImplementation.getInstance().post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
