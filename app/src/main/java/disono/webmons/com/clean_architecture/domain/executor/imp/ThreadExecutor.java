@@ -1,4 +1,4 @@
-package disono.webmons.com.clean_architecture.domain.executor.implementation;
+package disono.webmons.com.clean_architecture.domain.executor.imp;
 
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;

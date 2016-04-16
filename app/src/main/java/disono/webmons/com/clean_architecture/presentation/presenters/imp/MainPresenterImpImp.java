@@ -1,4 +1,4 @@
-package disono.webmons.com.clean_architecture.presentation.presenters.implementation;
+package disono.webmons.com.clean_architecture.presentation.presenters.imp;
 
 import disono.webmons.com.clean_architecture.domain.executor.Executor;
 import disono.webmons.com.clean_architecture.domain.executor.MainThread;
@@ -6,12 +6,12 @@ import disono.webmons.com.clean_architecture.domain.interactors.UserInteractor;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter;
 import disono.webmons.com.clean_architecture.presentation.presenters.base.AbstractPresenter;
 
-public class MainPresenterImplementation extends AbstractPresenter implements MainPresenter, UserInteractor.Callback {
+public class MainPresenterImpImp extends AbstractPresenter implements MainPresenter, UserInteractor.Callback {
     private MainPresenter.View mview;
 
-    public MainPresenterImplementation(Executor executor,
-                                       MainThread mainThread,
-                                       View view) {
+    public MainPresenterImpImp(Executor executor,
+                               MainThread mainThread,
+                               View view) {
         super(executor, mainThread);
         mview = view;
     }

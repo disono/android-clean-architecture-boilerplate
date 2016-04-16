@@ -8,12 +8,12 @@ import disono.webmons.com.clean_architecture.domain.executor.MainThread;
 /**
  * This class makes sure that the runnable we provide will be run on the main UI thread.
  */
-public class MainThreadImplementation implements MainThread {
+public class MainThreadImp implements MainThread {
     private static MainThread mainThread;
 
     private Handler handler;
 
-    private MainThreadImplementation() {
+    private MainThreadImp() {
         handler = new Handler(Looper.getMainLooper());
     }
 
@@ -24,7 +24,7 @@ public class MainThreadImplementation implements MainThread {
 
     public static MainThread getInstance() {
         if (mainThread == null) {
-            mainThread = new MainThreadImplementation();
+            mainThread = new MainThreadImp();
         }
 
         return mainThread;

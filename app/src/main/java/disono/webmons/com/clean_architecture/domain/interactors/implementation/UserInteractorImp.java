@@ -9,12 +9,12 @@ import disono.webmons.com.clean_architecture.domain.repository.Repository;
 /**
  * This is an interactor boilerplate with a reference to a model repository.
  */
-public class UserInteractorImplementation extends AbstractInteractor implements UserInteractor {
+public class UserInteractorImp extends AbstractInteractor implements UserInteractor {
     private UserInteractor.Callback callback;
     private Repository repository;
 
-    public UserInteractorImplementation(Executor executor, MainThread mainThread,
-                                        Callback callback, Repository repository) {
+    public UserInteractorImp(Executor executor, MainThread mainThread,
+                             Callback callback, Repository repository) {
         super(executor, mainThread);
         callback = callback;
         repository = repository;

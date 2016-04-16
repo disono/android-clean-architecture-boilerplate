@@ -9,7 +9,7 @@ import android.widget.Toast;
 import disono.webmons.com.clean_architecture.R;
 import disono.webmons.com.clean_architecture.presentation.listeners.DialogInterfaceFactory;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter.View;
-import disono.webmons.com.clean_architecture.threading.MainThreadImplementation;
+import disono.webmons.com.clean_architecture.threading.MainThreadImp;
 import disono.webmons.com.clean_architecture.util.DialogFactory;
 
 /**
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View {
             }
         })).show();
 
-        MainThreadImplementation.getInstance().post(new Runnable() {
+        MainThreadImp.getInstance().post(new Runnable() {
             @Override
             public void run() {
                 Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
