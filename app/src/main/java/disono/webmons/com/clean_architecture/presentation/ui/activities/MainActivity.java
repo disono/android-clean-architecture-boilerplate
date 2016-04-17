@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.presentation.listeners.DialogInterfaceFactory;
+import disono.webmons.com.clean_architecture.presentation.ui.listeners.DialogInterfaceFactory;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter.View;
 import disono.webmons.com.clean_architecture.threading.MainThreadImp;
-import disono.webmons.com.clean_architecture.util.DialogFactory;
+import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
 
 /**
  * Author: Archie, Disono

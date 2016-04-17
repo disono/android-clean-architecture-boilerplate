@@ -6,12 +6,12 @@ import disono.webmons.com.clean_architecture.domain.interactors.UserInteractor;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter;
 import disono.webmons.com.clean_architecture.presentation.presenters.base.AbstractPresenter;
 
-public class MainPresenterImpImp extends AbstractPresenter implements MainPresenter, UserInteractor.Callback {
+public class MainPresenterImp extends AbstractPresenter implements MainPresenter, UserInteractor.Callback {
     private MainPresenter.View mview;
 
-    public MainPresenterImpImp(Executor executor,
-                               MainThread mainThread,
-                               View view) {
+    public MainPresenterImp(Executor executor,
+                            MainThread mainThread,
+                            View view) {
         super(executor, mainThread);
         mview = view;
     }

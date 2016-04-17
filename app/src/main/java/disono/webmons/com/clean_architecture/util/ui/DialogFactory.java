@@ -1,4 +1,4 @@
-package disono.webmons.com.clean_architecture.util;
+package disono.webmons.com.clean_architecture.util.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,7 +10,8 @@ import disono.webmons.com.clean_architecture.R;
 
 /**
  * Author: Archie, Disono
- * Package: disono.webmons.com.clean_architecture.util
+ * Website: www.webmons.com
+ * License: Apache 2.0
  * Created at: 2016-04-13 11:26 AM
  */
 public class DialogFactory {
