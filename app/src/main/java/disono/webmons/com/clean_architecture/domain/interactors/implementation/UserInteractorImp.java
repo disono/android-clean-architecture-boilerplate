@@ -7,6 +7,11 @@ import disono.webmons.com.clean_architecture.domain.interactors.base.AbstractInt
 import disono.webmons.com.clean_architecture.domain.repository.Repository;
 
 /**
+ * Author: Archie, Disono (disono.apd@gmail.com)
+ * Website: www.webmons.com
+ * License: Apache 2.0
+ * Created at: 2016-04-12 11:26 AM
+ *
  * This is an interactor boilerplate with a reference to a model repository.
  */
 public class UserInteractorImp extends AbstractInteractor implements UserInteractor {

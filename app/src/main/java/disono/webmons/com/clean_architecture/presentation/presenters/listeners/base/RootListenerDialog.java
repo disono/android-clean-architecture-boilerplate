@@ -1,9 +1,9 @@
-package disono.webmons.com.clean_architecture.presentation.ui.listeners.base;
+package disono.webmons.com.clean_architecture.presentation.presenters.listeners.base;
 
 import android.content.DialogInterface;
 
 /**
- * Author: Archie, Disono
+ * Author: Archie, Disono (disono.apd@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
  * Created at: 2016-04-13 03:24 PM

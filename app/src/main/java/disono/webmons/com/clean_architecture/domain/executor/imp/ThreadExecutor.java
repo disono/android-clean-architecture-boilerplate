@@ -9,6 +9,11 @@ import disono.webmons.com.clean_architecture.domain.executor.Executor;
 import disono.webmons.com.clean_architecture.domain.interactors.base.AbstractInteractor;
 
 /**
+ * Author: Archie, Disono (disono.apd@gmail.com)
+ * Website: www.webmons.com
+ * License: Apache 2.0
+ * Created at: 2016-04-12 11:26 AM
+ *
  * This singleton class will make sure that each interactors operation gets a background thread.
  */
 public class ThreadExecutor implements Executor {

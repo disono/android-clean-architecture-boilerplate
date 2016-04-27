@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.presentation.ui.listeners.DialogInterfaceFactory;
+import disono.webmons.com.clean_architecture.presentation.presenters.listeners.DialogInterfaceFactory;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter.View;
 import disono.webmons.com.clean_architecture.threading.MainThreadImp;
 import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
 
 /**
- * Author: Archie, Disono
+ * Author: Archie, Disono (disono.apd@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
  * Created at: 2016-04-12 11:26 AM

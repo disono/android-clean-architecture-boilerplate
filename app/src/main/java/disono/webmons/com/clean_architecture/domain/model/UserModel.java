@@ -1,7 +1,10 @@
 package disono.webmons.com.clean_architecture.domain.model;
 
 /**
- * User model
+ * Author: Archie, Disono (disono.apd@gmail.com)
+ * Website: www.webmons.com
+ * License: Apache 2.0
+ * Created at: 2016-04-12 11:26 AM
  */
 public class UserModel {
     private int _id;

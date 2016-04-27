@@ -4,6 +4,11 @@ import disono.webmons.com.clean_architecture.domain.executor.Executor;
 import disono.webmons.com.clean_architecture.domain.executor.MainThread;
 
 /**
+ * Author: Archie, Disono (disono.apd@gmail.com)
+ * Website: www.webmons.com
+ * License: Apache 2.0
+ * Created at: 2016-04-12 11:26 AM
+ *
  * This abstract class implements some common methods for all interactors. Cancelling an interactor, check if its running
  * and finishing an interactor has mostly the same code throughout so that is why this class was created. Field methods
  * are declared volatile as we might use these methods from different threads (mainly from UI).
