@@ -7,4 +7,5 @@ package disono.webmons.com.clean_architecture.data.storage.db;
  * Created at: 2016-05-05 12:24 PM
  */
 public class User {
+
 }

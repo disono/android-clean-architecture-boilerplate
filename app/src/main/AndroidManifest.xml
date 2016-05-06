@@ -31,7 +31,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".presentation.ui.activities.auth.ForgotPasswordActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".presentation.ui.activities.user.UserListActivity"></activity>
     </application>
 
 </manifest>

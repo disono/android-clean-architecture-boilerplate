@@ -12,6 +12,7 @@ import disono.webmons.com.clean_architecture.data.services.git.adapter.GitAdapte
 import disono.webmons.com.clean_architecture.presentation.presenters.listeners.DialogInterfaceFactory;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter.View;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.auth.LoginActivity;
+import disono.webmons.com.clean_architecture.presentation.ui.activities.user.UserListActivity;
 import disono.webmons.com.clean_architecture.threading.MainThreadImp;
 import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View {
             }
         });
 
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
         startActivity(intent);
 
         GitAdapter gitAdapter = new GitAdapter();

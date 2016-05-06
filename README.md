@@ -10,3 +10,4 @@
 <p><a href="http://square.github.io/retrofit">Retrofit</a></p>
 <p><a href="https://github.com/google/gson">GSON</a></p>
 <p><a href="https://github.com/ReactiveX/RxJava">RXJava</a></p>
+<p><a href="http://square.github.io/okhttp/">okHTTP</a></p>
