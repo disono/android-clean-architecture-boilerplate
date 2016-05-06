@@ -1,7 +1,6 @@
 <resources>
     <!-- app -->
     <string name="app_name">Clean Architecture</string>
-
     <string name="main_package">disono.com.webmons</string>
 
     <!-- configs -->
@@ -15,4 +14,14 @@
 
     <!-- default messages -->
     <string name="no_internet">No internet connection!</string>
+
+    <!-- labels -->
+    <string name="lbl_email">Email</string>
+    <string name="lbl_password">Password</string>
+
+    <!-- buttons -->
+    <string name="btn_login">Login</string>
+
+    <!-- links -->
+    <string name="lnk_no_account">No account yet? Create one</string>
 </resources>

@@ -4,7 +4,7 @@ import disono.webmons.com.clean_architecture.domain.executor.Executor;
 import disono.webmons.com.clean_architecture.domain.executor.MainThread;
 import disono.webmons.com.clean_architecture.domain.interactors.UserInteractor;
 import disono.webmons.com.clean_architecture.domain.interactors.base.AbstractInteractor;
-import disono.webmons.com.clean_architecture.domain.repository.Repository;
+import disono.webmons.com.clean_architecture.domain.repository.UserRepository;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com)
@@ -12,17 +12,18 @@ import disono.webmons.com.clean_architecture.domain.repository.Repository;
  * License: Apache 2.0
  * Created at: 2016-04-12 11:26 AM
  *
- * This is an interactor boilerplate with a reference to a model repository.
+ * This is an interactor boilerplate with a reference to a model userRepository.
  */
-public class UserInteractorImp extends AbstractInteractor implements UserInteractor {
-    private UserInteractor.Callback callback;
-    private Repository repository;
+public class UserInteractorImpl extends AbstractInteractor implements UserInteractor {
+    private UserInteractor.Callback mCallback;
+    private UserRepository mUserRepository;
 
-    public UserInteractorImp(Executor executor, MainThread mainThread,
-                             Callback callback, Repository repository) {
+    public UserInteractorImpl(Executor executor, MainThread mainThread,
+                              Callback callback, UserRepository userRepository) {
         super(executor, mainThread);
-        callback = callback;
-        repository = repository;
+
+        mCallback = callback;
+        mUserRepository = userRepository;
     }
 
     @Override

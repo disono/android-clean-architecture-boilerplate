@@ -2,13 +2,16 @@ package disono.webmons.com.clean_architecture.presentation.ui.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import disono.webmons.com.clean_architecture.R;
+import disono.webmons.com.clean_architecture.data.services.git.adapter.GitAdapter;
 import disono.webmons.com.clean_architecture.presentation.presenters.listeners.DialogInterfaceFactory;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter.View;
+import disono.webmons.com.clean_architecture.presentation.ui.activities.auth.LoginActivity;
 import disono.webmons.com.clean_architecture.threading.MainThreadImp;
 import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
 
@@ -40,6 +43,12 @@ public class MainActivity extends AppCompatActivity implements View {
                 Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
             }
         });
+
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+
+        GitAdapter gitAdapter = new GitAdapter();
+        gitAdapter.getUser("disono");
     }
 
     @Override
