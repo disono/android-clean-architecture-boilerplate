@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GitAdapter {
     private final String baseUrl = "https://api.github.com";
 
-    public void getUser(String username) {
+    public Call<GitModel> getUser(String username) {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -26,17 +26,6 @@ public class GitAdapter {
                 .build();
         GitAPI gitAPI = client.create(GitAPI.class);
 
-        Call<GitModel> call = gitAPI.getUser(username);
-        call.enqueue(new Callback<GitModel>() {
-            @Override
-            public void onResponse(Call<GitModel> call, Response<GitModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<GitModel> call, Throwable t) {
-
-            }
-        });
+        return gitAPI.getUser(username);
     }
 }

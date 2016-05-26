@@ -32,7 +32,8 @@
         <activity
             android:name=".presentation.ui.activities.auth.ForgotPasswordActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".presentation.ui.activities.user.UserListActivity"></activity>
+        <activity android:name=".presentation.ui.activities.user.UserListActivity" />
+        <activity android:name=".presentation.ui.activities.auth.SocialAuthActivity"></activity>
     </application>
 
 </manifest>
