@@ -1,4 +1,4 @@
-package disono.webmons.com.clean_architecture.data.api.auth;
+package disono.webmons.com.clean_architecture.data.lib.auth;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com)

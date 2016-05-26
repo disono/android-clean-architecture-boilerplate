@@ -3,6 +3,7 @@ package disono.webmons.com.clean_architecture.presentation.ui.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import disono.webmons.com.clean_architecture.presentation.presenters.MainPresent
 import disono.webmons.com.clean_architecture.presentation.ui.activities.auth.LoginActivity;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.user.UserListActivity;
 import disono.webmons.com.clean_architecture.threading.MainThreadImp;
+import disono.webmons.com.clean_architecture.util.sensor.Camera.Launcher;
 import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +30,7 @@ import retrofit2.Response;
  */
 public class MainActivity extends AppCompatActivity implements View {
     Context ctx;
+    private int REQUEST_IMAGE_CAPTURE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +38,16 @@ public class MainActivity extends AppCompatActivity implements View {
         setContentView(R.layout.activity_main);
         ctx = this.getApplication().getApplicationContext();
 
-        DialogFactory.error(this, "Error", "No internet connection!", new DialogInterfaceFactory().OnClick(new DialogInterface.OnClickListener() {
+        // dialog
+        DialogFactory.error(this, "Error", "No internet connection!",
+                new DialogInterfaceFactory().OnClick(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
             }
         })).show();
 
-        MainThreadImp.getInstance().post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
-            }
-        });
-
+        // activity user list
         Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
         startActivity(intent);
 
@@ -63,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements View {
                 MainThreadImp.getInstance().post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(ctx, "API Response: " + res.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ctx, "API Response: " +
+                                res.body().getEmail(), Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -78,6 +78,10 @@ public class MainActivity extends AppCompatActivity implements View {
                 });
             }
         });
+
+        Launcher launcher = new Launcher();
+        REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE;
+        launcher.takePicture(this);
     }
 
     @Override
@@ -93,5 +97,16 @@ public class MainActivity extends AppCompatActivity implements View {
     @Override
     public void showError(String message) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            if (imageBitmap != null) {
+                Toast.makeText(ctx, "Data: " + imageBitmap.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
