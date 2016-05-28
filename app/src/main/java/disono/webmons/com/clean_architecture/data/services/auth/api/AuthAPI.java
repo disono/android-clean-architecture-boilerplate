@@ -7,7 +7,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
- * Author: Archie, Disono (disono.apd@gmail.com)
+ * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
  * Created at: 2016-05-05 12:43 PM

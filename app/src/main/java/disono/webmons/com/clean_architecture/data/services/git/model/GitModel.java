@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Author: Archie, Disono (disono.apd@gmail.com)
+ * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
  * Created at: 2016-05-06 01:09 PM

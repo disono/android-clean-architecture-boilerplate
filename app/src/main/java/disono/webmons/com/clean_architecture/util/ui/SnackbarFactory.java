@@ -5,7 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 /**
- * Author: Archie, Disono (disono.apd@gmail.com)
+ * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
  * Created at: 2016-04-13 12:03 PM

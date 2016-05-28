@@ -7,7 +7,7 @@ import disono.webmons.com.clean_architecture.domain.interactors.base.AbstractInt
 import disono.webmons.com.clean_architecture.domain.repository.AuthRepository;
 
 /**
- * Author: Archie, Disono (disono.apd@gmail.com)
+ * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
  * Created at: 2016-05-04 09:48 PM
