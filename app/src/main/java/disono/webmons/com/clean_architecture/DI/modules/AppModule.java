@@ -1,4 +1,4 @@
-package disono.webmons.com.clean_architecture.DI.components;
+package disono.webmons.com.clean_architecture.DI.modules;
 
 import android.content.Context;
 
@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+
 import disono.webmons.com.clean_architecture.AndroidApplication;
 import disono.webmons.com.clean_architecture.DI.ForApplication;
 
@@ -15,20 +16,18 @@ import disono.webmons.com.clean_architecture.DI.ForApplication;
  * License: Apache 2.0
  * Created at: 2016-05-28 01:03 PM
  */
-@Module(
-        includes = SensorModule.class
-)
-public class ApplicationModule {
+@Module
+public class AppModule {
     private final AndroidApplication application;
 
-    public ApplicationModule(AndroidApplication application) {
+    public AppModule(AndroidApplication application) {
         this.application = application;
     }
 
     @Provides
     @Singleton
     @ForApplication
-    Context provideApplicationContent() {
-        return this.application;
+    Context provideApplicationContext() {
+        return application;
     }
 }

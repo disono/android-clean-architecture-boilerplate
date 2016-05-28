@@ -4,19 +4,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.location.Location;
+import android.location.LocationListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import disono.webmons.com.clean_architecture.DI.ActivityBaseComponent;
 import disono.webmons.com.clean_architecture.R;
 import disono.webmons.com.clean_architecture.data.services.git.adapter.GitAdapter;
 import disono.webmons.com.clean_architecture.data.services.git.model.GitModel;
 import disono.webmons.com.clean_architecture.presentation.presenters.listeners.DialogInterfaceFactory;
 import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter.View;
-import disono.webmons.com.clean_architecture.presentation.ui.activities.auth.LoginActivity;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.user.UserListActivity;
 import disono.webmons.com.clean_architecture.threading.MainThreadImp;
 import disono.webmons.com.clean_architecture.util.sensor.Camera.Launcher;
+import disono.webmons.com.clean_architecture.util.sensor.GeoLocation.GPS;
+import disono.webmons.com.clean_architecture.util.sensor.Motion.AccelListener;
 import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,11 +41,70 @@ public class MainActivity extends AppCompatActivity implements View {
     Context ctx;
     private int REQUEST_IMAGE_CAPTURE;
 
+    @Inject
+    Launcher launcher;
+
+    @Inject
+    GPS gps;
+
+    @Inject
+    AccelListener accelListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ctx = this.getApplication().getApplicationContext();
+
+        ActivityBaseComponent.inject(this);
+        ActivityBaseComponent.component().inject(this);
+
+        REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE;
+        launcher.takePicture();
+
+        accelListener.listener(new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                // only look at accelerometer events
+                if (event.sensor.getType() != Sensor.TYPE_ACCELEROMETER) {
+                    return;
+                }
+
+                Toast.makeText(MainActivity.this, "Acc X: " + event.values[0],
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        });
+
+        gps.run(new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                Toast.makeText(MainActivity.this, "Lat: " + location.getLatitude(),
+                        Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this, "Lng: " + location.getLongitude(),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        });
 
         // dialog
         DialogFactory.error(this, "Error", "No internet connection!",
@@ -78,10 +146,6 @@ public class MainActivity extends AppCompatActivity implements View {
                 });
             }
         });
-
-        Launcher launcher = new Launcher();
-        REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE;
-        launcher.takePicture(this);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -12,12 +13,17 @@ import android.provider.MediaStore;
  * Created at: 2016-05-26 06:39 PM
  */
 public class Launcher {
+    private Activity activity;
     public final int REQUEST_IMAGE_CAPTURE = 1;
 
     protected final static String[] permissions = { Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE };
 
-    public void takePicture(Activity activity) {
+    public Launcher(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void takePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(activity.getApplicationContext().getPackageManager()) != null) {
             activity.startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
