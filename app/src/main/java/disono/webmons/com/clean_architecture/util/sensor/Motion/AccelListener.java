@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Handler;
-import android.os.Looper;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -19,43 +18,39 @@ import java.util.List;
  * Created at: 2016-05-28 05:53 PM
  */
 public class AccelListener {
+    private static final String TAG = "AccelListener";
+
+    private Application application;
+    public int accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
+
+    private SensorEventListener listener;
+    // sensor manager
+    private SensorManager mSensorManager;
+    // acceleration sensor returned by sensor manager
+    private Sensor mSensor;
+
     public static int STOPPED = 0;
     public static int STARTING = 1;
     public static int RUNNING = 2;
     public static int ERROR_FAILED_TO_START = 3;
-    private Handler mainHandler = null;
-    private SensorEventListener listener;
 
-    private Runnable mainRunnable = new Runnable() {
-        @Override
-        public void run() {
-            AccelListener.this.timeout();
-        }
-    };
-
-    private Application application;
-    private SensorManager mSensorManager;
-    private Sensor mSensor;
-
-    // most recent values
-    private float x, y, z;
-    private int status;
-    private long timestamp;
-    private int accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
+    // status listener
+    public int status;
 
     public AccelListener(Activity activity) {
         this.application = activity.getApplication();
         mSensorManager = (SensorManager) application.getSystemService(Context.SENSOR_SERVICE);
     }
 
+    // listen for sensor data
     public void listener(SensorEventListener listener) {
         this.listener = listener;
     }
 
-    public int start() {
+    // start the sensor
+    public int start() throws Exception {
         // if already starting or running, then restart timeout and return
         if ((this.status == AccelListener.RUNNING) || (this.status == AccelListener.STARTING)) {
-            startTimeout();
             return this.status;
         }
 
@@ -72,7 +67,7 @@ public class AccelListener {
                 this.setStatus(AccelListener.STARTING);
             } else {
                 this.setStatus(AccelListener.ERROR_FAILED_TO_START);
-                this.fail(AccelListener.ERROR_FAILED_TO_START, "Device sensor returned an error");
+                this.fail(AccelListener.ERROR_FAILED_TO_START, "Device sensor returned an error.");
                 return this.status;
             }
         } else {
@@ -81,14 +76,11 @@ public class AccelListener {
             return this.status;
         }
 
-        startTimeout();
-
         return this.status;
     }
 
-    private void stop() {
-        stopTimeout();
-
+    // stop the sensor
+    public void stop() {
         if (this.status != AccelListener.STOPPED) {
             this.mSensorManager.unregisterListener(listener);
         }
@@ -97,36 +89,14 @@ public class AccelListener {
         this.accuracy = SensorManager.SENSOR_STATUS_UNRELIABLE;
     }
 
-    private void startTimeout() {
-        // set a timeout callback on the main thread.
-        stopTimeout();
-        mainHandler = new Handler(Looper.getMainLooper());
-        mainHandler.postDelayed(mainRunnable, 2000);
-    }
-
-    private void stopTimeout() {
-        if (mainHandler != null) {
-            mainHandler.removeCallbacks(mainRunnable);
-        }
-    }
-
-    private void timeout() {
-        if (this.status == AccelListener.STARTING) {
-            // call win with latest cached position
-            this.timestamp = System.currentTimeMillis();
-            this.win();
-        }
-    }
-
-    private void setStatus(int status) {
+    // set the status of the sensor
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    private void win() {
-        // success return object
-    }
-
-    private void fail(int code, String message) {
-        // error object
+    // error occured
+    public void fail(int code, String message) throws Exception {
+        Timber.d("%s code: %i, message: %s", TAG, code, message);
+        throw new Exception("Code: " + code + ", message: " + message);
     }
 }

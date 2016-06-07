@@ -9,6 +9,8 @@ import dagger.Provides;
 import disono.webmons.com.clean_architecture.util.sensor.Camera.Launcher;
 import disono.webmons.com.clean_architecture.util.sensor.GeoLocation.GPS;
 import disono.webmons.com.clean_architecture.util.sensor.Motion.AccelListener;
+import disono.webmons.com.clean_architecture.util.sensor.Orientation.ScreenOrientation;
+import disono.webmons.com.clean_architecture.util.sensor.Vibration.Vibrate;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -40,5 +42,17 @@ public class SensorModule {
     @Singleton
     public AccelListener provideMotion() {
         return new AccelListener(activity);
+    }
+
+    @Provides
+    @Singleton
+    public ScreenOrientation provideOrientation() {
+        return new ScreenOrientation(activity);
+    }
+
+    @Provides
+    @Singleton
+    public Vibrate provideVibrate() {
+        return new Vibrate(activity);
     }
 }

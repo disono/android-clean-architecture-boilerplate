@@ -11,10 +11,16 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import disono.webmons.com.clean_architecture.DI.ActivityBaseComponent;
 import disono.webmons.com.clean_architecture.R;
 import disono.webmons.com.clean_architecture.data.services.git.adapter.GitAdapter;
@@ -26,6 +32,8 @@ import disono.webmons.com.clean_architecture.threading.MainThreadImp;
 import disono.webmons.com.clean_architecture.util.sensor.Camera.Launcher;
 import disono.webmons.com.clean_architecture.util.sensor.GeoLocation.GPS;
 import disono.webmons.com.clean_architecture.util.sensor.Motion.AccelListener;
+import disono.webmons.com.clean_architecture.util.sensor.Orientation.ScreenOrientation;
+import disono.webmons.com.clean_architecture.util.sensor.Vibration.Vibrate;
 import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,18 +58,37 @@ public class MainActivity extends AppCompatActivity implements View {
     @Inject
     AccelListener accelListener;
 
+    @Inject
+    ScreenOrientation orientation;
+
+    @Inject
+    Vibrate vibrate;
+
+    @BindView(R.id.btn_start_acc) Button btn_start_acc;
+    @BindView(R.id.btn_stop_acc) Button btn_stop_acc;
+    @BindView(R.id.txt_acc_x) TextView txt_acc_x;
+    @BindView(R.id.txt_acc_y) TextView txt_acc_y;
+    @BindView(R.id.txt_acc_z) TextView txt_acc_z;
+
+    @BindView(R.id.txt_gps_lat) TextView txt_gps_lat;
+    @BindView(R.id.txt_gps_lng) TextView txt_gps_lng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ctx = this.getApplication().getApplicationContext();
+        ButterKnife.bind(this);
 
         ActivityBaseComponent.inject(this);
         ActivityBaseComponent.component().inject(this);
 
+        ctx = this.getApplication().getApplicationContext();
+
+        // camera
         REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE;
         launcher.takePicture();
 
+        // accelerometer
         accelListener.listener(new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
@@ -70,8 +97,9 @@ public class MainActivity extends AppCompatActivity implements View {
                     return;
                 }
 
-                Toast.makeText(MainActivity.this, "Acc X: " + event.values[0],
-                        Toast.LENGTH_SHORT).show();
+                txt_acc_x.setText(String.valueOf("X: " + event.values[0]));
+                txt_acc_y.setText(String.valueOf("Y: " + event.values[1]));
+                txt_acc_z.setText(String.valueOf("Z: " + event.values[2]));
             }
 
             @Override
@@ -80,14 +108,32 @@ public class MainActivity extends AppCompatActivity implements View {
             }
         });
 
+        // start the sensor acceloremeter
+        btn_start_acc.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                try {
+                    accelListener.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        // stop the sensor acceloremeter
+        btn_stop_acc.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                accelListener.stop();
+            }
+        });
+
+        // gps
         gps.run(new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                Toast.makeText(MainActivity.this, "Lat: " + location.getLatitude(),
-                        Toast.LENGTH_SHORT).show();
-
-                Toast.makeText(MainActivity.this, "Lng: " + location.getLongitude(),
-                        Toast.LENGTH_SHORT).show();
+                txt_gps_lat.setText(String.valueOf("Lat: " + location.getLatitude()));
+                txt_gps_lng.setText(String.valueOf("Lng: " + location.getLongitude()));
             }
 
             @Override
@@ -105,6 +151,17 @@ public class MainActivity extends AppCompatActivity implements View {
 
             }
         });
+
+        // screen orientation
+        try {
+            orientation.apply("LANDSCAPE");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // vibration
+        long[] patterns = {100, 200, 300, 400, 500};
+        vibrate.pattern(patterns, 1);
 
         // dialog
         DialogFactory.error(this, "Error", "No internet connection!",
