@@ -8,6 +8,8 @@ import dagger.Module;
 import dagger.Provides;
 import disono.webmons.com.clean_architecture.util.sensor.Camera.Launcher;
 import disono.webmons.com.clean_architecture.util.sensor.GeoLocation.GPS;
+import disono.webmons.com.clean_architecture.util.sensor.Media.AudioHandler;
+import disono.webmons.com.clean_architecture.util.sensor.Media.AudioRecord;
 import disono.webmons.com.clean_architecture.util.sensor.Motion.AccelListener;
 import disono.webmons.com.clean_architecture.util.sensor.Orientation.ScreenOrientation;
 import disono.webmons.com.clean_architecture.util.sensor.Vibration.Vibrate;
@@ -54,5 +56,17 @@ public class SensorModule {
     @Singleton
     public Vibrate provideVibrate() {
         return new Vibrate(activity);
+    }
+
+    @Provides
+    @Singleton
+    public AudioHandler provideAudioHandler() {
+        return new AudioHandler(activity);
+    }
+
+    @Provides
+    @Singleton
+    public AudioRecord provideAudioRecord() {
+        return new AudioRecord(activity);
     }
 }

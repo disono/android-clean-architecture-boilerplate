@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -31,6 +29,7 @@ import disono.webmons.com.clean_architecture.presentation.ui.activities.user.Use
 import disono.webmons.com.clean_architecture.threading.MainThreadImp;
 import disono.webmons.com.clean_architecture.util.sensor.Camera.Launcher;
 import disono.webmons.com.clean_architecture.util.sensor.GeoLocation.GPS;
+import disono.webmons.com.clean_architecture.util.sensor.Media.AudioHandler;
 import disono.webmons.com.clean_architecture.util.sensor.Motion.AccelListener;
 import disono.webmons.com.clean_architecture.util.sensor.Orientation.ScreenOrientation;
 import disono.webmons.com.clean_architecture.util.sensor.Vibration.Vibrate;
@@ -64,14 +63,24 @@ public class MainActivity extends AppCompatActivity implements View {
     @Inject
     Vibrate vibrate;
 
-    @BindView(R.id.btn_start_acc) Button btn_start_acc;
-    @BindView(R.id.btn_stop_acc) Button btn_stop_acc;
-    @BindView(R.id.txt_acc_x) TextView txt_acc_x;
-    @BindView(R.id.txt_acc_y) TextView txt_acc_y;
-    @BindView(R.id.txt_acc_z) TextView txt_acc_z;
+    @Inject
+    AudioHandler audioHandler;
 
-    @BindView(R.id.txt_gps_lat) TextView txt_gps_lat;
-    @BindView(R.id.txt_gps_lng) TextView txt_gps_lng;
+    @BindView(R.id.btn_start_acc)
+    Button btn_start_acc;
+    @BindView(R.id.btn_stop_acc)
+    Button btn_stop_acc;
+    @BindView(R.id.txt_acc_x)
+    TextView txt_acc_x;
+    @BindView(R.id.txt_acc_y)
+    TextView txt_acc_y;
+    @BindView(R.id.txt_acc_z)
+    TextView txt_acc_z;
+
+    @BindView(R.id.txt_gps_lat)
+    TextView txt_gps_lat;
+    @BindView(R.id.txt_gps_lng)
+    TextView txt_gps_lng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View {
             }
         });
 
-        // start the sensor acceloremeter
+        // start the sensor accelerometer
         btn_start_acc.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
@@ -120,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View {
             }
         });
 
-        // stop the sensor acceloremeter
+        // stop the sensor accelerometer
         btn_stop_acc.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
@@ -166,11 +175,11 @@ public class MainActivity extends AppCompatActivity implements View {
         // dialog
         DialogFactory.error(this, "Error", "No internet connection!",
                 new DialogInterfaceFactory().OnClick(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
-            }
-        })).show();
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(ctx, "Working...", Toast.LENGTH_LONG).show();
+                    }
+                })).show();
 
         // activity user list
         Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
@@ -203,6 +212,9 @@ public class MainActivity extends AppCompatActivity implements View {
                 });
             }
         });
+
+        // play audio
+        audioHandler.play("android.resource://" + getApplicationContext().getPackageName() + "/" + R.raw.audio);
     }
 
     @Override
