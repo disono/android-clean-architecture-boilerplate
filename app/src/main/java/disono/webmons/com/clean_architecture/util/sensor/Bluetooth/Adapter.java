@@ -115,7 +115,7 @@ public class Adapter {
      *
      * @return
      */
-    public List<BluetoothDevice> discoverDevices() {
+    public List<BluetoothDevice> discoveredDevices() {
         // Register the BroadcastReceiver
         final IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         discoverDevicesAdapter = new ArrayList<>();

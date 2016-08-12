@@ -13,7 +13,7 @@ import disono.webmons.com.clean_architecture.DI.modules.AppModule;
  */
 @Singleton
 @Component(
-        modules = AppModule.class
+        modules = {AppModule.class}
 )
 public interface ApplicationComponent {
 

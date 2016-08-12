@@ -3,6 +3,7 @@ package disono.webmons.com.clean_architecture.DI.components;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import disono.webmons.com.clean_architecture.DI.modules.LibraryModule;
 import disono.webmons.com.clean_architecture.DI.modules.SensorModule;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.MainActivity;
 
@@ -14,7 +15,7 @@ import disono.webmons.com.clean_architecture.presentation.ui.activities.MainActi
  */
 @Singleton
 @Component(
-        modules = SensorModule.class
+        modules = {SensorModule.class, LibraryModule.class}
 )
 public interface ActivityComponent {
     void inject(MainActivity mainActivity);

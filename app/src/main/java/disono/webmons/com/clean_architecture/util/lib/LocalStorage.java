@@ -1,5 +1,6 @@
 package disono.webmons.com.clean_architecture.util.lib;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -15,9 +16,18 @@ public class LocalStorage {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String prefName;
+    
+    private Activity activity;
+    private Context ctx;
+    
+    public LocalStorage(Activity activity) {
+        this.activity = activity;
 
-    public String getString(Context ctx, String key) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+        ctx = this.activity.getApplication();
+        prefName = this.activity.getResources().getString(R.string.main_package);
+    }
+
+    public String getString(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -27,8 +37,7 @@ public class LocalStorage {
          return null;
     }
 
-    public int getInt(Context ctx, String key) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public int getInt(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -38,8 +47,7 @@ public class LocalStorage {
         return -1;
     }
 
-    public float getFloat(Context ctx, String key) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public float getFloat(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -49,15 +57,13 @@ public class LocalStorage {
         return -1;
     }
 
-    public boolean getBool(Context ctx, String key) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public boolean getBool(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         return sharedPreferences != null && sharedPreferences.getBoolean(key, false);
     }
 
-    public void createString(Context ctx, String key, String value) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public void createString(String key, String value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -67,8 +73,7 @@ public class LocalStorage {
         }
     }
 
-    public void createInt(Context ctx, String key, int value) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public void createInt(String key, int value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -78,8 +83,7 @@ public class LocalStorage {
         }
     }
 
-    public void createFloat(Context ctx, String key, float value) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public void createFloat(String key, float value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -89,8 +93,7 @@ public class LocalStorage {
         }
     }
 
-    public void createBool(Context ctx, String key, boolean value) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public void createBool(String key, boolean value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -100,8 +103,7 @@ public class LocalStorage {
         }
     }
 
-    public void delete(Context ctx, String key) {
-        prefName = ctx.getResources().getString(R.string.main_package);
+    public void delete(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
@@ -110,7 +112,6 @@ public class LocalStorage {
     }
 
     public void clear(Context ctx) {
-        prefName = ctx.getResources().getString(R.string.main_package);
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         if (sharedPreferences != null) {
