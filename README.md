@@ -16,6 +16,22 @@
 <p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Google SDK</a></p>
 
 # Utilities Usage
+<p>
+Camera: <br>
+@Inject <br>
+Launcher launcher; <br>
+REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE; <br>
+launcher.takePicture(); <br>
+// on activity result
+onActivityResult
+Bundle extras = data.getExtras();
+Bitmap imageBitmap = (Bitmap) extras.get("data");
+if (imageBitmap != null) {
+// location imageBitmap.toString()
+}
+</p>
+<p></p>
+<p></p>
 <p></p>
 <p></p>
 <p></p>
