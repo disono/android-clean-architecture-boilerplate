@@ -147,5 +147,36 @@ DialogFactory.error(ctx, "Title", "Message!",
 })).show();
 ```
 
+### API Call
+```sh
+// Call API
+YourAdapter yourAdapter = new YourAdapter();
+Call<YOURMODELNAME> call = yourAdapter.getUser("username");
+call.enqueue(new Callback<YOURMODELNAME>() {
+  @Override
+  public void onResponse(Call<YOURMODELNAME> call, Response<YOURMODELNAME> response) {
+                  final Response<YOURMODELNAME> res = response;
+                  
+                  MainThreadImp.getInstance().post(new Runnable() {
+                      @Override
+                      public void run() {
+                          // sample response model
+                          // res.body().getEmail()
+                      }
+                  });
+  }
+              
+  @Override
+  public void onFailure(Call<YOURMODELNAME> call, Throwable t) {
+                  MainThreadImp.getInstance().post(new Runnable() {
+                      @Override
+                      public void run() {
+                        // error messages
+                      }
+                  });
+  }
+});
+```
+
 # Other Resources
 <p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Using OAuth 2.0 with the Google API Client Library for Java</a></p>
