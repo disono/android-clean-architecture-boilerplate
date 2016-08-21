@@ -22,12 +22,12 @@ Camera: <br>
 Launcher launcher; <br>
 REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE; <br>
 launcher.takePicture(); <br>
-// on activity result
-onActivityResult
-Bundle extras = data.getExtras();
-Bitmap imageBitmap = (Bitmap) extras.get("data");
-if (imageBitmap != null) {
-// location imageBitmap.toString()
+// on activity result <br>
+onActivityResult <br>
+Bundle extras = data.getExtras(); <br>
+Bitmap imageBitmap = (Bitmap) extras.get("data"); <br>
+if (imageBitmap != null) { <br>
+// location imageBitmap.toString() <br>
 }
 </p>
 <p></p>
