@@ -14,6 +14,7 @@ import timber.log.Timber;
  * Created at: 8/12/2016 2:04 PM
  */
 public class SMS {
+    private final String TAG = "SMS:Class";
     private Activity activity;
     private Context ctx;
 
@@ -36,7 +37,7 @@ public class SMS {
         try {
             smsManager.sendTextMessage(phoneNumber, null, message, null, null);
         } catch (Exception e) {
-            Timber.e("SMS:Class, Error: %s", e.getMessage());
+            Timber.e("%s, Error: %s", TAG, e.getMessage());
         }
     }
 
@@ -50,13 +51,12 @@ public class SMS {
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
         sendIntent.putExtra("address", phoneNumber);
         sendIntent.putExtra("sms_body", message);
-        sendIntent.setType("vnd.android-dir/mms-sms");
 
         try {
             this.activity.startActivity(sendIntent);
             this.activity.finish();
         } catch (android.content.ActivityNotFoundException e) {
-            Timber.e("SMS:Class, Error: %s", e.getMessage());
+            Timber.e("%s, Error: %s", TAG, e.getMessage());
         }
     }
 }

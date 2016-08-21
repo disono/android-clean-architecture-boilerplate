@@ -46,7 +46,7 @@ public class AcceptThread extends Thread {
             // UUID is the app's UUID string, also used by the client code
             mmServerSocket = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(serverName, java.util.UUID.fromString(UUID));
         } catch (IOException e) {
-            Timber.e(TAG + ", Error: %s", e.getMessage());
+            Timber.e("%s, Error: %s", TAG, e.getMessage());
         }
     }
 
@@ -67,7 +67,7 @@ public class AcceptThread extends Thread {
                 try {
                     mmServerSocket.close();
                 } catch (IOException e) {
-                    Timber.e(TAG + ", Error: %s", e.getMessage());
+                    Timber.e("%s, Error: %s", TAG, e.getMessage());
                 }
 
                 break;
@@ -91,7 +91,7 @@ public class AcceptThread extends Thread {
         try {
             mSocket.close();
         } catch (IOException e) {
-            Timber.e(TAG + ", Error: %s", e.getMessage());
+            Timber.e("%s, Error: %s", TAG, e.getMessage());
         }
     }
 }

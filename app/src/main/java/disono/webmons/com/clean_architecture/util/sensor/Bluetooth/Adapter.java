@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import timber.log.Timber;
+
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
@@ -32,7 +34,7 @@ public class Adapter {
     public Adapter(Activity activity) {
         this.activity = activity;
     }
-
+    
     /**
      * Broadcast receiver for list of discovered devices
      */
@@ -60,12 +62,12 @@ public class Adapter {
 
         // is bluetooth supported on this device
         if (mBluetoothAdapter == null) {
-            Log.e(TAG, "Device does not support Bluetooth.");
+            Timber.e("%s, Error: %s", TAG, "Device does not support Bluetooth.");
         } else {
             // check if the bluetooth is currently enabled
             if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                activity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                this.activity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
         }
     }
@@ -78,7 +80,7 @@ public class Adapter {
     public void enableDiscoverable(int duration) {
         Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, duration);
-        activity.startActivity(discoverableIntent);
+        this.activity.startActivity(discoverableIntent);
     }
 
     /**
