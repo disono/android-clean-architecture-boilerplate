@@ -178,5 +178,26 @@ call.enqueue(new Callback<YOURMODELNAME>() {
 });
 ```
 
+### SMTP
+```sh
+@Inject
+SMTP smtp;
+
+smtp.username = "your-gmail@gmail.com";
+smtp.password = "your-password";
+
+smtp.host = "smtp.gmail.com";
+smtp.email = "to-someone@yahoo.com";
+smtp.subject = "JavaMail Demo";
+smtp.message = "Content of the demo";
+
+smtp.attachment = new File(Environment.getExternalStorageDirectory() +
+  File.separator + "DCIM" + File.separator + "Camera" + File.separator + "your-image.png").toString();
+
+// send the email
+smtp.execute();
+```
+
+
 # Other Resources
 <p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Using OAuth 2.0 with the Google API Client Library for Java</a></p>
