@@ -15,5 +15,10 @@
 <p><a href="hhttps://docs.fabric.io/android/twitter/twitter.html">Twitter SDK</a></p>
 <p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Google SDK</a></p>
 
+# Utilities Usage
+<p></p>
+<p></p>
+<p></p>
+
 # Other Resources
 <p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Using OAuth 2.0 with the Google API Client Library for Java</a></p>
