@@ -229,3 +229,6 @@ new FetchEmail().execute();
 
 # Other Resources
 <p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Using OAuth 2.0 with the Google API Client Library for Java</a></p>
+
+# License
+Android Clean Architecture Boilerplate is licensed under the Apache License (ASL) license. For more information, see the LICENSE file in this repository.
