@@ -1,19 +1,19 @@
 # Android Clean Architecture Boilerplate
 
 # Libraries
-<p>AppCompat</p>
-<p>Support Design</p>
-<p><a href="https://github.com/JakeWharton/timber">Timber</a></p>
-<p><a href="http://jakewharton.github.io/butterknife">Butterknife</a></p>
-<p><a href="https://github.com/square/picasso">Picasso</a></p>
-<p><a href="http://google.github.io/dagger/">Dagger</a></p>
-<p><a href="http://square.github.io/retrofit">Retrofit</a></p>
-<p><a href="https://github.com/google/gson">GSON</a></p>
-<p><a href="https://github.com/ReactiveX/RxJava">RXJava</a></p>
-<p><a href="http://square.github.io/okhttp/">okHTTP</a></p>
-<p><a href="https://developers.facebook.com/docs/android/">Facebook SDK</a></p>
-<p><a href="hhttps://docs.fabric.io/android/twitter/twitter.html">Twitter SDK</a></p>
-<p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Google SDK</a></p>
+* **AppCompat**
+* **Support Design**
+* **Timber:** [https://github.com/JakeWharton/timber](https://github.com/JakeWharton/timber)
+* **Butterknife:** [http://jakewharton.github.io/butterknife](http://jakewharton.github.io/butterknife)
+* **Picasso:** [https://github.com/square/picasso](https://github.com/square/picasso)
+* **Dagger:** [http://google.github.io/dagger/](http://google.github.io/dagger/)
+* **Retrofit:** [http://square.github.io/retrofit](http://square.github.io/retrofit)
+* **GSON:** [https://github.com/google/gson](https://github.com/google/gson)
+* **RXJava** [https://github.com/ReactiveX/RxJava](https://github.com/ReactiveX/RxJava)
+* **okHTTP** [http://square.github.io/okhttp](http://square.github.io/okhttp)
+* **Facebook SDK** [https://developers.facebook.com/docs/android](https://developers.facebook.com/docs/android)
+* **Twitter SDK** [hhttps://docs.fabric.io/android/twitter/twitter.html](hhttps://docs.fabric.io/android/twitter/twitter.html)
+* **Google SDK** [https://developers.google.com/api-client-library/java/google-api-java-client/oauth2](https://developers.google.com/api-client-library/java/google-api-java-client/oauth2)
 
 # Utilities Usage
 ### Camera
@@ -198,6 +198,34 @@ smtp.attachment = new File(Environment.getExternalStorageDirectory() +
 smtp.execute();
 ```
 
+### IMAP
+```sh
+@Inject
+IMAP imap;
+
+private class FetchEmail extends AsyncTask<Void, Void, Void> {
+  @Override
+        protected Void doInBackground(Void... voids) {
+            imap.username = "your-email@your-provider.com";
+            imap.password = "your-email-password";
+
+            imap.host = "imap.your-provider.com";
+
+            IMAP.ContentMessages[] messages = imap.fetch();
+            for (IMAP.ContentMessages message : messages) {
+              // message.getReceivedDate().toString()
+            }
+
+            // close the connection
+            imap.close();
+
+            return null;
+        }
+}
+
+// execute the task
+new FetchEmail().execute();
+```
 
 # Other Resources
 <p><a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2">Using OAuth 2.0 with the Google API Client Library for Java</a></p>
