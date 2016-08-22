@@ -189,7 +189,7 @@ smtp.password = "your-password";
 
 smtp.host = "smtp.gmail.com";
 
-// signle email
+// single email
 smtp.email = "to-someone@yahoo.com";
 // multiple email
 smtp.emailMultiple = "to-someone@yahoo.com,to-other-someone@yahoo.com";
