@@ -1,4 +1,4 @@
-package disono.webmons.com.clean_architecture.DI.modules;
+package disono.webmons.com.clean_architecture.dependencies.modules;
 
 import android.app.Activity;
 
@@ -6,13 +6,16 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import disono.webmons.com.clean_architecture.util.lib.LocalStorage;
-import disono.webmons.com.clean_architecture.util.lib.SMS;
+import disono.webmons.com.clean_architecture.util.library.LocalStorage;
+import disono.webmons.com.clean_architecture.util.library.Mail.IMAP;
+import disono.webmons.com.clean_architecture.util.library.Mail.SMTP;
+import disono.webmons.com.clean_architecture.util.library.SMS;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
+ * Copyright 2016 Webmons Development Studio.
  * Created at: 2016-07-20 06:37 PM
  */
 @Module
@@ -33,5 +36,17 @@ public class LibraryModule {
     @Singleton
     public SMS provideSMS() {
         return new SMS(activity);
+    }
+
+    @Provides
+    @Singleton
+    public SMTP provideSMTP() {
+        return new SMTP(activity);
+    }
+
+    @Provides
+    @Singleton
+    public IMAP provideIMAP() {
+        return new IMAP(activity);
     }
 }

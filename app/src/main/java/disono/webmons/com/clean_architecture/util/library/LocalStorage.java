@@ -1,4 +1,4 @@
-package disono.webmons.com.clean_architecture.util.lib;
+package disono.webmons.com.clean_architecture.util.library;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import disono.webmons.com.clean_architecture.R;
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
+ * Copyright 2016 Webmons Development Studio.
  * Created at: 2016-04-25 02:48 PM
  */
 public class LocalStorage {
@@ -27,6 +28,12 @@ public class LocalStorage {
         prefName = this.activity.getResources().getString(R.string.main_package);
     }
 
+    /**
+     * Get String
+     *
+     * @param key
+     * @return
+     */
     public String getString(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -37,6 +44,12 @@ public class LocalStorage {
          return null;
     }
 
+    /**
+     * Get Integer
+     *
+     * @param key
+     * @return
+     */
     public int getInt(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -47,6 +60,12 @@ public class LocalStorage {
         return -1;
     }
 
+    /**
+     * Get float
+     *
+     * @param key
+     * @return
+     */
     public float getFloat(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -57,12 +76,24 @@ public class LocalStorage {
         return -1;
     }
 
+    /**
+     * Get boolean
+     *
+     * @param key
+     * @return
+     */
     public boolean getBool(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
         return sharedPreferences != null && sharedPreferences.getBoolean(key, false);
     }
 
+    /**
+     * Create String
+     *
+     * @param key
+     * @param value
+     */
     public void createString(String key, String value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -73,6 +104,12 @@ public class LocalStorage {
         }
     }
 
+    /**
+     * Create Integer
+     *
+     * @param key
+     * @param value
+     */
     public void createInt(String key, int value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -83,6 +120,12 @@ public class LocalStorage {
         }
     }
 
+    /**
+     * Create float
+     *
+     * @param key
+     * @param value
+     */
     public void createFloat(String key, float value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -93,6 +136,12 @@ public class LocalStorage {
         }
     }
 
+    /**
+     * Create boolean
+     *
+     * @param key
+     * @param value
+     */
     public void createBool(String key, boolean value) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -103,6 +152,11 @@ public class LocalStorage {
         }
     }
 
+    /**
+     * Delete
+     *
+     * @param key
+     */
     public void delete(String key) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -111,6 +165,11 @@ public class LocalStorage {
         }
     }
 
+    /**
+     * Clear all
+     *
+     * @param ctx
+     */
     public void clear(Context ctx) {
         sharedPreferences = ctx.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 

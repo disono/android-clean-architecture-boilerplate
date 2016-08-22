@@ -19,6 +19,7 @@ import timber.log.Timber;
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
+ * Copyright: Copyright 2016 Webmons Development Studio.
  * Created at: 8/8/2016 11:19 AM
  */
 public class Adapter {

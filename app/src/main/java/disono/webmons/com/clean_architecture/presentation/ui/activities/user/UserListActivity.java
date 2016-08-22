@@ -12,10 +12,16 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.presentation.presenters.MainPresenter;
-import disono.webmons.com.clean_architecture.util.ui.DialogFactory;
+import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.MainPresenter;
 import disono.webmons.com.clean_architecture.util.ui.SnackbarFactory;
 
+/**
+ * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
+ * Website: www.webmons.com
+ * License: Apache 2.0
+ * Copyright 2016 Webmons Development Studio.
+ * Created at: 2016-04-12 11:26 AM
+ */
 public class UserListActivity extends AppCompatActivity implements MainPresenter.View {
     private Context ctx;
     private ArrayList<String> userNames = new ArrayList<String>();;

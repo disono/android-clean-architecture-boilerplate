@@ -14,6 +14,7 @@ import timber.log.Timber;
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
+ * Copyright 2016 Webmons Development Studio.
  * Created at: 2016-07-29 05:22 PM
  */
 public class AudioHandler {

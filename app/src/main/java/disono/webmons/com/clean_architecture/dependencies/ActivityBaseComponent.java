@@ -1,16 +1,17 @@
-package disono.webmons.com.clean_architecture.DI;
+package disono.webmons.com.clean_architecture.dependencies;
 
 import android.app.Activity;
 
-import disono.webmons.com.clean_architecture.DI.components.ActivityComponent;
-import disono.webmons.com.clean_architecture.DI.components.DaggerActivityComponent;
-import disono.webmons.com.clean_architecture.DI.modules.LibraryModule;
-import disono.webmons.com.clean_architecture.DI.modules.SensorModule;
+import disono.webmons.com.clean_architecture.dependencies.components.ActivityComponent;
+import disono.webmons.com.clean_architecture.dependencies.components.DaggerActivityComponent;
+import disono.webmons.com.clean_architecture.dependencies.modules.LibraryModule;
+import disono.webmons.com.clean_architecture.dependencies.modules.SensorModule;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
+ * Copyright 2016 Webmons Development Studio.
  * Created at: 2016-05-28 05:06 PM
  */
 public class ActivityBaseComponent {

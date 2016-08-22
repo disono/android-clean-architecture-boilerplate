@@ -1,11 +1,13 @@
 package disono.webmons.com.clean_architecture.data.services.auth.adapter;
 
-
 import android.content.Context;
 
 import disono.webmons.com.clean_architecture.R;
 import disono.webmons.com.clean_architecture.data.services.auth.api.AuthAPI;
-import disono.webmons.com.clean_architecture.data.services.git.model.GitModel;
+import disono.webmons.com.clean_architecture.data.services.auth.model.ForgotModel;
+import disono.webmons.com.clean_architecture.data.services.auth.model.LoginModel;
+import disono.webmons.com.clean_architecture.data.services.auth.model.RegisterModel;
+import disono.webmons.com.clean_architecture.data.services.auth.model.UserModel;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -15,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
  * Website: www.webmons.com
  * License: Apache 2.0
+ * Copyright 2016 Webmons Development Studio.
  * Created at: 2016-05-05 07:23 PM
  */
 public class AuthAdapter {
@@ -36,16 +39,16 @@ public class AuthAdapter {
      * @param username
      * @return
      */
-    public Call<GitModel> register(String first_name, String last_name, String email,
-                                   String password, String username) {
+    public Call<RegisterModel> register(String first_name, String last_name, String email,
+                                        String password, String username) {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        AuthAPI gitAPI = client.create(AuthAPI.class);
+        AuthAPI authAPI = client.create(AuthAPI.class);
 
-        return gitAPI.register(first_name, last_name, email, password, username);
+        return authAPI.register(first_name, last_name, email, password, username);
     }
 
     /**
@@ -55,26 +58,32 @@ public class AuthAdapter {
      * @param password
      * @return
      */
-    public Call<GitModel> login(String email, String password) {
+    public Call<LoginModel> login(String email, String password) {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        AuthAPI gitAPI = client.create(AuthAPI.class);
+        AuthAPI authAPI = client.create(AuthAPI.class);
 
-        return gitAPI.login(email, password);
+        return authAPI.login(email, password);
     }
 
-    public Call<GitModel> forgot(String email) {
+    /**
+     * Forgot password
+     *
+     * @param email
+     * @return
+     */
+    public Call<ForgotModel> forgot(String email) {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        AuthAPI gitAPI = client.create(AuthAPI.class);
+        AuthAPI authAPI = client.create(AuthAPI.class);
 
-        return gitAPI.forgot(email);
+        return authAPI.forgot(email);
     }
 
     /**
@@ -84,14 +93,14 @@ public class AuthAdapter {
      * @param token
      * @return
      */
-    public Call<GitModel> user(String username, String token) {
+    public Call<UserModel> user(String username, String token) {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        AuthAPI gitAPI = client.create(AuthAPI.class);
+        AuthAPI authAPI = client.create(AuthAPI.class);
 
-        return gitAPI.user(username, token);
+        return authAPI.user(username, token);
     }
 }
