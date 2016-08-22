@@ -188,7 +188,12 @@ smtp.username = "your-gmail@gmail.com";
 smtp.password = "your-password";
 
 smtp.host = "smtp.gmail.com";
+
+// signle email
 smtp.email = "to-someone@yahoo.com";
+// multiple email
+smtp.emailMultiple = "to-someone@yahoo.com,to-other-someone@yahoo.com";
+
 smtp.subject = "JavaMail Demo";
 smtp.message = "Content of the demo";
 
@@ -226,6 +231,17 @@ private class FetchEmail extends AsyncTask<Void, Void, Void> {
 
 // execute the task
 new FetchEmail().execute();
+```
+
+### Network Connection Type
+```sh
+@Inject
+Network network;
+
+// type
+network.connectionInfo().getString("type");
+// info
+network.connectionInfo().getString("info");
 ```
 
 # Other Resources
