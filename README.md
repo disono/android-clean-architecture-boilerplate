@@ -1,4 +1,5 @@
 # Android Clean Architecture Boilerplate
+is a starting blank template for Android Projects
 
 # Libraries
 * **AppCompat**
