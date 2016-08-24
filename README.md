@@ -17,6 +17,16 @@ is a starting blank template for Android Projects
 * **Google SDK** [https://developers.google.com/api-client-library/java/google-api-java-client/oauth2](https://developers.google.com/api-client-library/java/google-api-java-client/oauth2)
 
 # Utilities Usage
+### Running Logic on Thread
+```sh
+MainThreadImp.getInstance().post(new Runnable() {
+  @Override
+  public void run() {
+    
+  }
+});
+```
+
 ### Camera
 ```sh
 @Inject
@@ -156,25 +166,15 @@ Call<YOURMODELNAME> call = yourAdapter.getUser("username");
 call.enqueue(new Callback<YOURMODELNAME>() {
   @Override
   public void onResponse(Call<YOURMODELNAME> call, Response<YOURMODELNAME> response) {
-                  final Response<YOURMODELNAME> res = response;
-                  
-                  MainThreadImp.getInstance().post(new Runnable() {
-                      @Override
-                      public void run() {
-                          // sample response model
-                          // res.body().getEmail()
-                      }
-                  });
+    final Response<YOURMODELNAME> res = response;
+    
+    // sample response model
+    // res.body().getEmail()
   }
-              
+  
   @Override
   public void onFailure(Call<YOURMODELNAME> call, Throwable t) {
-                  MainThreadImp.getInstance().post(new Runnable() {
-                      @Override
-                      public void run() {
-                        // error messages
-                      }
-                  });
+    
   }
 });
 ```
