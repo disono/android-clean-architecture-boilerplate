@@ -137,13 +137,24 @@ long[] patterns = {100, 200, 300, 400, 500};
 vibrate.pattern(patterns, 1);
 ```
 
-### Media
+### Audio Player
 ```sh
 @Inject
 AudioHandler audioHandler;
 
 // play audio
 audioHandler.play("android.resource://" + getApplicationContext().getPackageName() + "/" + R.raw.audio);
+```
+
+### Video Player
+```sh
+@Inject
+VideoHandler videoHandler;
+
+videoHandler.play("https://www.youtube.com/path-to-video");
+videoHandler.play("http://your-domain-name/video.mp4");
+videoHandler.play("file:///your-path/demo.mp4");
+videoHandler.play("file:///android_asset/your-path/demo.mp4");
 ```
 
 ### Dialogs
