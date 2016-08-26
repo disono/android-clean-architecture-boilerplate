@@ -13,7 +13,7 @@ is a starting blank template for Android Projects
 * **RXJava** [https://github.com/ReactiveX/RxJava](https://github.com/ReactiveX/RxJava)
 * **okHTTP** [http://square.github.io/okhttp](http://square.github.io/okhttp)
 * **Facebook SDK** [https://developers.facebook.com/docs/android](https://developers.facebook.com/docs/android)
-* **Twitter SDK** [hhttps://docs.fabric.io/android/twitter/twitter.html](hhttps://docs.fabric.io/android/twitter/twitter.html)
+* **Twitter SDK** [hhttps://docs.fabric.io/android/twitter/twitter.html](https://docs.fabric.io/android/twitter/twitter.html)
 * **Google SDK** [https://developers.google.com/api-client-library/java/google-api-java-client/oauth2](https://developers.google.com/api-client-library/java/google-api-java-client/oauth2)
 
 # Utilities Usage
