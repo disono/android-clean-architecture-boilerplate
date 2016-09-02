@@ -6,10 +6,11 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import disono.webmons.com.clean_architecture.util.library.LocalStorage;
-import disono.webmons.com.clean_architecture.util.library.Mail.IMAP;
-import disono.webmons.com.clean_architecture.util.library.Mail.SMTP;
-import disono.webmons.com.clean_architecture.util.library.SMS;
+import disono.webmons.com.clean_architecture.utilities.library.Dialogs.Sweet.WBAlerts;
+import disono.webmons.com.clean_architecture.utilities.library.LocalStorage;
+import disono.webmons.com.clean_architecture.utilities.library.Mail.IMAP;
+import disono.webmons.com.clean_architecture.utilities.library.Mail.SMTP;
+import disono.webmons.com.clean_architecture.utilities.library.SMS;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -48,5 +49,11 @@ public class LibraryModule {
     @Singleton
     public IMAP provideIMAP() {
         return new IMAP(activity);
+    }
+
+    @Provides
+    @Singleton
+    public WBAlerts provideWBAlerts() {
+        return new WBAlerts(activity);
     }
 }

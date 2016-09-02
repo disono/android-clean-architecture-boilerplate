@@ -15,6 +15,14 @@ is a starting blank template for Android Projects
 * **Facebook SDK** [https://developers.facebook.com/docs/android](https://developers.facebook.com/docs/android)
 * **Twitter SDK** [hhttps://docs.fabric.io/android/twitter/twitter.html](https://docs.fabric.io/android/twitter/twitter.html)
 * **Google SDK** [https://developers.google.com/api-client-library/java/google-api-java-client/oauth2](https://developers.google.com/api-client-library/java/google-api-java-client/oauth2)
+* **EasyForm** [https://github.com/emmasuzuki/EasyForm](https://github.com/emmasuzuki/EasyForm)
+* **Sweet Alert Dialog** [https://github.com/pedant/sweet-alert-dialog](https://github.com/pedant/sweet-alert-dialog)
+* **Sugar ORM** [https://github.com/satyan/sugar](https://github.com/satyan/sugar)
+* **Java JWT** [https://github.com/jwtk/jjwt](https://github.com/jwtk/jjwt)
+* **Particle** [https://github.com/JeasonWong/Particle](https://github.com/JeasonWong/Particle)
+* **CircleImageView** [https://github.com/hdodenhof/CircleImageView](https://github.com/hdodenhof/CircleImageView)
+* **Material DateTime Picker - Select a time/date in style** [https://github.com/wdullaer/MaterialDateTimePicker](https://github.com/wdullaer/MaterialDateTimePicker)
+* **RippleEffect** [https://github.com/traex/RippleEffect](https://github.com/traex/RippleEffect)
 
 # Utilities Usage
 ### Running Logic on Thread
@@ -82,6 +90,7 @@ try {
 // stop
 accelListener.stop();
 ```
+
 ### GPS
 ```sh
 @Inject
@@ -167,6 +176,14 @@ DialogFactory.error(ctx, "Title", "Message!",
                       
     }
 })).show();
+```
+
+### Alers
+```sh
+@Inject
+WBAlerts wbAlerts;
+
+wbAlerts.error("Error Name", "Error Message").show();
 ```
 
 ### API Call

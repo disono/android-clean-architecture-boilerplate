@@ -1,10 +1,29 @@
 <resources>
-    <!-- Base application theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Base application theme with ActionBar-->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="actionBarStyle">@style/ActionBarThemeNoShadow</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+    </style>
+
+    <!-- ActionBar with no shadow -->
+    <style name="ActionBarThemeNoShadow" parent="Base.Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/tw__blue_pressed_light</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <!-- Slide -->
+    <style name="Slide">
+        <item name="android:windowEnterAnimation">@anim/slide_enter</item>
+        <item name="android:windowExitAnimation">@anim/slide_enter</item>
     </style>
 
     <!-- Splash theme -->

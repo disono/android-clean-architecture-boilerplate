@@ -6,6 +6,9 @@ import dagger.Component;
 import disono.webmons.com.clean_architecture.dependencies.modules.LibraryModule;
 import disono.webmons.com.clean_architecture.dependencies.modules.SensorModule;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.MainActivity;
+import disono.webmons.com.clean_architecture.presentation.ui.activities.authenticate.LoginActivity;
+import disono.webmons.com.clean_architecture.presentation.ui.activities.settings.SettingsActivity;
+import disono.webmons.com.clean_architecture.presentation.ui.fragments.settings.GeneralSettingsFragment;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -20,4 +23,10 @@ import disono.webmons.com.clean_architecture.presentation.ui.activities.MainActi
 )
 public interface ActivityComponent {
     void inject(MainActivity mainActivity);
+
+    void inject(LoginActivity loginActivity);
+
+    void inject(SettingsActivity settingsActivity);
+
+    void inject(GeneralSettingsFragment generalSettingsFragment);
 }

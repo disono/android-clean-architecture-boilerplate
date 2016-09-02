@@ -17,4 +17,9 @@ public interface Executor {
      * @param interactor The interactor to run.
      */
     void execute(final AbstractInteractor interactor);
+
+    /**
+     * Shutdown the thread
+     */
+    void close();
 }

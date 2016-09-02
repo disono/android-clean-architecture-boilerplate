@@ -6,7 +6,7 @@ package disono.webmons.com.clean_architecture.presentation.ui;
  * License: Apache 2.0
  * Copyright 2016 Webmons Development Studio.
  * Created at: 2016-04-25 11:26 AM
- *
+ * <p>
  * This interface represents a basic view. All views should implement these common methods.
  */
 public interface BaseView {

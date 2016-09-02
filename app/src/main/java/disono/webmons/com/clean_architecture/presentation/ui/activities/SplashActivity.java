@@ -1,13 +1,16 @@
 package disono.webmons.com.clean_architecture.presentation.ui.activities;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import disono.webmons.com.clean_architecture.R;
+import disono.webmons.com.clean_architecture.domain.model.MeModel;
 import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.MainPresenter.View;
+import disono.webmons.com.clean_architecture.presentation.ui.activities.authenticate.LoginActivity;
+import me.wangyuwei.particleview.ParticleView;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -17,33 +20,39 @@ import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.M
  * Created at: 2016-04-25 11:26 AM
  */
 public class SplashActivity extends AppCompatActivity implements View {
-    private Context ctx;
+    private Activity mActivity;
 
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 3000;
+    private final static int SPLASH_TIME_OUT = 3000;
+    private ParticleView particleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ctx = this.getApplication().getApplicationContext();
+        mActivity = this;
 
-        new Handler().postDelayed(new Runnable() {
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
+        // animtion text
+        particleView = (ParticleView) findViewById(R.id.content_name);
+        particleView.postDelayed(() -> particleView.startAnim(), 200);
 
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                // you can do a cache for your app or background server call while splash is loading
-                Intent intent = new Intent(ctx, MainActivity.class);
-                startActivity(intent);
-                finish();
+        // start the activity
+        new Handler().postDelayed(() -> {
+            // This method will be executed once the timer is over
+            // Start your app main activity
+            // you can do a cache for your app or background server call while splash is loading
+            MeModel meModel = new MeModel();
+            Intent intent;
+
+            if (meModel.check()) {
+                intent = new Intent(mActivity, MainActivity.class);
+            } else {
+                intent = new Intent(mActivity, LoginActivity.class);
             }
+
+            startActivity(intent);
+            finish();
         }, SPLASH_TIME_OUT);
     }
 

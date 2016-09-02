@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="disono.webmons.com.clean_architecture">
 
+    <!-- permissions -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -13,19 +15,50 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.USE_SIP" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-feature android:name="android.hardware.sensor.accelerometer" />
+    <!-- features -->
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="false" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.sip.voip"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="true" />
 
     <application
-        android:name=".AndroidApplication"
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+
+        <!-- database -->
+        <meta-data
+            android:name="DATABASE"
+            android:value="disono_webmons_com_clean_architecture.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="disono.webmons.com.clean_architecture" />
+
+        <!-- activities and fragments -->
         <activity
             android:name=".presentation.ui.activities.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -36,13 +69,25 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.ui.activities.auth.LoginActivity" />
-        <activity android:name=".presentation.ui.activities.auth.RegisterActivity" />
-        <activity android:name=".presentation.ui.activities.auth.ForgotPasswordActivity" />
-        <activity android:name=".presentation.ui.activities.auth.SocialAuthActivity" />
-
+        <activity
+            android:name=".presentation.ui.activities.authenticate.LoginActivity"
+            android:label="@string/txt_login" />
+        <activity
+            android:name=".presentation.ui.activities.authenticate.RegisterActivity"
+            android:label="@string/txt_register" />
+        <activity
+            android:name=".presentation.ui.activities.authenticate.ForgotPasswordActivity"
+            android:label="@string/txt_forgot" />
+        <activity
+            android:name=".presentation.ui.activities.authenticate.SocialAuthActivity"
+            android:label="@string/txt_social" />
         <activity android:name=".presentation.ui.activities.MainActivity" />
-        <activity android:name=".presentation.ui.activities.user.UserListActivity" />
+
+        <activity
+            android:name=".presentation.ui.activities.settings.SettingsActivity"
+            android:label="@string/txt_settings" />
+
+        <activity android:name=".presentation.ui.activities.demo.DemoListActivity" />
     </application>
 
 </manifest>

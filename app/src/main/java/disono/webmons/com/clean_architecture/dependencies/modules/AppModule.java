@@ -6,7 +6,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-
 import disono.webmons.com.clean_architecture.AndroidApplication;
 import disono.webmons.com.clean_architecture.dependencies.ForApplication;
 

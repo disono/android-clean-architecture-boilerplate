@@ -6,13 +6,15 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import disono.webmons.com.clean_architecture.util.sensor.Camera.Launcher;
-import disono.webmons.com.clean_architecture.util.sensor.GeoLocation.GPS;
-import disono.webmons.com.clean_architecture.util.sensor.Media.AudioHandler;
-import disono.webmons.com.clean_architecture.util.sensor.Media.AudioRecord;
-import disono.webmons.com.clean_architecture.util.sensor.Motion.AccelListener;
-import disono.webmons.com.clean_architecture.util.sensor.Orientation.ScreenOrientation;
-import disono.webmons.com.clean_architecture.util.sensor.Vibration.Vibrate;
+import disono.webmons.com.clean_architecture.utilities.sensor.Camera.Launcher;
+import disono.webmons.com.clean_architecture.utilities.sensor.Connection.Network;
+import disono.webmons.com.clean_architecture.utilities.sensor.GeoLocation.GPS;
+import disono.webmons.com.clean_architecture.utilities.sensor.Media.AudioHandler;
+import disono.webmons.com.clean_architecture.utilities.sensor.Media.AudioRecord;
+import disono.webmons.com.clean_architecture.utilities.sensor.Media.VideoHandler;
+import disono.webmons.com.clean_architecture.utilities.sensor.Motion.AccelListener;
+import disono.webmons.com.clean_architecture.utilities.sensor.Orientation.ScreenOrientation;
+import disono.webmons.com.clean_architecture.utilities.sensor.Vibration.Vibrate;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -69,5 +71,17 @@ public class SensorModule {
     @Singleton
     public AudioRecord provideAudioRecord() {
         return new AudioRecord(activity);
+    }
+
+    @Provides
+    @Singleton
+    public Network provideNetwork() {
+        return new Network(activity);
+    }
+
+    @Provides
+    @Singleton
+    public VideoHandler provideVideo() {
+        return new VideoHandler(activity);
     }
 }
