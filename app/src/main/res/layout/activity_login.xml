@@ -6,7 +6,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    app:submitButton="@+id/btn_login"
+    app:submitButton="@+id/btn_login_submit"
     tools:context=".presentation.ui.activities.authenticate.LoginActivity">
 
     <ScrollView
@@ -35,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/lbl_email"
                 android:inputType="textEmailAddress"
+                app:regexPattern="@string/regex_email"
                 app:errorMessage="@string/error_message_email"
-                app:regexPattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
                 app:errorType="empty" />
 
             <!-- password Label -->
@@ -51,25 +51,38 @@
                 app:minChars="4" />
 
             <!-- button login -->
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_login"
+            <com.andexert.library.RippleView
+                rv_centered="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_login_submit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:padding="12dp"
+                    android:text="@string/btn_login" />
+            </com.andexert.library.RippleView>
+
+            <!-- forgot password -->
+            <TextView
+                android:id="@+id/text_forgot"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginTop="24dp"
-                android:padding="12dp"
-                android:text="@string/btn_login" />
+                android:gravity="center"
+                android:text="@string/lnk_forgot_password"
+                android:textSize="16sp" />
 
-            <!-- link to register -->
+            <!-- register -->
             <TextView
                 android:id="@+id/text_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:gravity="center"
                 android:text="@string/lnk_no_account"
                 android:textSize="16sp" />
-
         </LinearLayout>
     </ScrollView>
 </com.emmasuzuki.easyform.EasyForm>

@@ -1,6 +1,6 @@
 package disono.webmons.com.clean_architecture.storage;
 
-import disono.webmons.com.clean_architecture.utilities.helpers.WBSecurity;
+import disono.webmons.com.utilities.helpers.WBSecurity;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -11,12 +11,13 @@ import disono.webmons.com.clean_architecture.utilities.helpers.WBSecurity;
  */
 public class Configurations {
     private final static String _baseURL = "http://your-domain/api/v1/";
+    private final static String _baseSocketURI = "http://your-domain/api/v1/";
     private final static String _JWT_SECRET = "";
 
     // token expiry date (minutes)
-    private final static int _JWT_Exp = 10;
+    private final static int _JWT_Exp = 60;
     //  earliest point in time that the token can be used (minutes)
-    private final static int _JWT_Nbf = 10;
+    private final static int _JWT_Nbf = 30;
 
     /**
      * String values
@@ -29,6 +30,8 @@ public class Configurations {
             return _baseURL;
         } else if (key.equals("JWT_SECRET")) {
             return WBSecurity.encodeBase64(_JWT_SECRET);
+        } else if (key.equals("baseSocketURI")) {
+            return _baseSocketURI;
         }
 
         return null;

@@ -1,7 +1,7 @@
 package disono.webmons.com.clean_architecture.domain.interactors.base;
 
-import disono.webmons.com.clean_architecture.domain.executor.Executor;
-import disono.webmons.com.clean_architecture.domain.executor.MainThread;
+import disono.webmons.com.clean_architecture.domain.executor.interfaces.Executor;
+import disono.webmons.com.clean_architecture.domain.executor.interfaces.MainThread;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)

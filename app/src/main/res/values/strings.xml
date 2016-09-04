@@ -16,21 +16,28 @@
     <string name="lbl_email">Email</string>
     <string name="lbl_first_name">First Name</string>
     <string name="lbl_last_name">Last Name</string>
+    <string name="lbl_last_username">Username</string>
     <string name="lbl_address">Address</string>
     <string name="lbl_about">About</string>
     <string name="lbl_phone">Phone</string>
     <string name="lbl_gender">Gender</string>
     <string name="lbl_password">Password</string>
+    <string name="lbl_current_password">Current Password</string>
+    <string name="lbl_new_password">New Password</string>
 
     <!-- buttons -->
     <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_submit">Submit</string>
     <string name="btn_update">Update</string>
+    <string name="btn_save">Save Changes</string>
     <string name="btn_logout">Logout</string>
     <string name="btn_date">Pick a date</string>
     <string name="btn_time">Pick a time</string>
 
     <!-- links -->
     <string name="lnk_no_account">No account yet? Create one</string>
+    <string name="lnk_forgot_password">Forgot Password?</string>
 
     <!-- validation messages -->
     <string name="error_message_empty">This field is required.</string>
@@ -51,4 +58,7 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <!-- regex -->
+    <string name="regex_email">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$</string>
 </resources>

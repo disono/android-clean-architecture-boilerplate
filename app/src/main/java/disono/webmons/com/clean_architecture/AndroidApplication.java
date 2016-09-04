@@ -2,7 +2,7 @@ package disono.webmons.com.clean_architecture;
 
 import android.app.Application;
 
-import disono.webmons.com.clean_architecture.dependencies.ApplicationBaseComponent;
+import disono.webmons.com.dependencies.ApplicationBaseComponent;
 import timber.log.Timber;
 
 /**

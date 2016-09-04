@@ -23,6 +23,7 @@ is a starting blank template for Android Projects
 * **CircleImageView** [https://github.com/hdodenhof/CircleImageView](https://github.com/hdodenhof/CircleImageView)
 * **Material DateTime Picker - Select a time/date in style** [https://github.com/wdullaer/MaterialDateTimePicker](https://github.com/wdullaer/MaterialDateTimePicker)
 * **RippleEffect** [https://github.com/traex/RippleEffect](https://github.com/traex/RippleEffect)
+* **Picasso** [http://square.github.io/picasso/](http://square.github.io/picasso/)
 
 # Utilities Usage
 ### Running Logic on Thread

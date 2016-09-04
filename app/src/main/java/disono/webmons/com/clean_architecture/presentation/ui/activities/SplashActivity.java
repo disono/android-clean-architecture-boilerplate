@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.domain.model.MeModel;
-import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.MainPresenter.View;
+import disono.webmons.com.clean_architecture.domain.models.MeModel;
+import disono.webmons.com.clean_architecture.presentation.presenters.interfaces.MainPresenter.View;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.authenticate.LoginActivity;
 import me.wangyuwei.particleview.ParticleView;
 

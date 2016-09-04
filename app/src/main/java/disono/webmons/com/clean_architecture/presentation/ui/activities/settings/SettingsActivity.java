@@ -9,10 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.dependencies.ActivityBaseComponent;
-import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.SettingsPresenter;
+import disono.webmons.com.clean_architecture.presentation.presenters.interfaces.SettingsPresenter;
 import disono.webmons.com.clean_architecture.presentation.ui.adapters.settings.SettingsPagerAdapter;
-import disono.webmons.com.clean_architecture.presentation.ui.transitions.Sliders;
+import disono.webmons.com.dependencies.ActivityBaseComponent;
+import disono.webmons.com.utilities.animations.transitions.Sliders;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -22,7 +22,7 @@ import disono.webmons.com.clean_architecture.presentation.ui.transitions.Sliders
  * Created at: 2016-04-12 11:26 AM
  */
 public class SettingsActivity extends AppCompatActivity implements SettingsPresenter.View {
-    private final String TAG = "SettingsAct:Activity";
+    private final String TAG = "SettingsActivity:Activity";
     Activity mActivity;
 
     @BindView(R.id.tab_settings_layout)

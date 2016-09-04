@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.presentation.ui.transitions.Sliders;
+import disono.webmons.com.utilities.animations.transitions.Sliders;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)

@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
@@ -19,7 +17,6 @@ import com.emmasuzuki.easyform.EasyTextInputLayout;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.io.File;
-import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -28,22 +25,23 @@ import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.dependencies.ActivityBaseComponent;
-import disono.webmons.com.clean_architecture.domain.executor.MainThreadImplement;
-import disono.webmons.com.clean_architecture.domain.executor.implement.ThreadExecutor;
-import disono.webmons.com.clean_architecture.domain.model.MeModel;
+import disono.webmons.com.clean_architecture.domain.executor.implementations.MainThreadImplement;
+import disono.webmons.com.clean_architecture.domain.executor.implementations.ThreadExecutor;
+import disono.webmons.com.clean_architecture.domain.models.MeModel;
 import disono.webmons.com.clean_architecture.presentation.converters.Inputs;
-import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.GeneralSettingsPresenter;
-import disono.webmons.com.clean_architecture.presentation.presenters.implementation.GeneralSettingsImplement;
+import disono.webmons.com.clean_architecture.presentation.presenters.implementations.GeneralSettingsWatcher;
+import disono.webmons.com.clean_architecture.presentation.presenters.interfaces.GeneralSettingsPresenter;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.authenticate.LoginActivity;
-import disono.webmons.com.clean_architecture.utilities.helpers.WBFile;
-import disono.webmons.com.clean_architecture.utilities.helpers.WBHttp;
-import disono.webmons.com.clean_architecture.utilities.helpers.WBTime;
-import disono.webmons.com.clean_architecture.utilities.library.Dialogs.Sweet.WBAlerts;
-import disono.webmons.com.clean_architecture.utilities.sensor.Camera.Launcher;
-import disono.webmons.com.clean_architecture.utilities.sensor.Connection.Network;
-import disono.webmons.com.clean_architecture.utilities.ui.DialogFactory;
-import disono.webmons.com.clean_architecture.utilities.ui.ToastFactory;
+import disono.webmons.com.dependencies.ActivityBaseComponent;
+import disono.webmons.com.utilities.helpers.WBFile;
+import disono.webmons.com.utilities.helpers.WBForm;
+import disono.webmons.com.utilities.helpers.WBHttp;
+import disono.webmons.com.utilities.helpers.WBTime;
+import disono.webmons.com.utilities.library.Dialogs.Sweet.WBAlerts;
+import disono.webmons.com.utilities.sensor.Camera.Launcher;
+import disono.webmons.com.utilities.sensor.Connection.Network;
+import disono.webmons.com.utilities.ui.DialogFactory;
+import disono.webmons.com.utilities.ui.ToastFactory;
 import timber.log.Timber;
 
 /**
@@ -56,14 +54,14 @@ import timber.log.Timber;
 public class GeneralSettingsFragment extends Fragment implements GeneralSettingsPresenter.View, DatePickerDialog.OnDateSetListener {
     private final String TAG = "GeneralSettingsFragment:Fragment";
     private Activity mActivity;
-
-    @Inject
-    Launcher launcher;
-    private int REQUEST_IMAGE_CAPTURE;
     private GeneralSettingsPresenter generalSettingsPresenter;
     private Inputs inputs = new Inputs();
     private SweetAlertDialog progressDialog;
     private File uriImage;
+
+    @Inject
+    Launcher launcher;
+    private int REQUEST_IMAGE_CAPTURE;
 
     @Inject
     Network network;
@@ -121,7 +119,7 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
         // request code for camera
         REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE;
 
-        generalSettingsPresenter = new GeneralSettingsImplement(
+        generalSettingsPresenter = new GeneralSettingsWatcher(
                 ThreadExecutor.getInstance(),
                 MainThreadImplement.getInstance(),
                 this,
@@ -132,48 +130,15 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
     }
 
     @Override
-    public void showProgress() {
-        progressDialog = wbAlerts.progress("Updating Profile...", false);
-        progressDialog.show();
-    }
-
-    @Override
-    public void hideProgress() {
-        progressDialog.cancel();
-    }
-
-    @Override
-    public void showError(String message) {
-        wbAlerts.error("Update Failed", message).show();
-
-        Timber.e("%s, Error: %s", TAG, message);
-    }
-
-    @Override
     public void listeners() {
         // camera for avatar
         img_avatar.setOnClickListener(view -> startActivityForResult(launcher.takeIntentPicture(), REQUEST_IMAGE_CAPTURE));
 
         // date picker for birthday
-        btn_general_birthday.setOnClickListener(view -> {
-            Calendar now = Calendar.getInstance();
-            DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
-                    GeneralSettingsFragment.this,
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH)
-            );
-            datePickerDialog.show(mActivity.getFragmentManager(), "Datepickerdialog");
-        });
+        btn_general_birthday.setOnClickListener(view -> DialogFactory.calendar(mActivity, GeneralSettingsFragment.this));
 
-        // create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mActivity,
-                R.array.spinner_gender, android.R.layout.simple_spinner_item);
-        // specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // apply the adapter to the spinner
-        spinner_gender.setAdapter(adapter);
-        spinner_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        // gender
+        spinner_gender = WBForm.defaultSpinner(mActivity, R.array.spinner_gender, spinner_gender, new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {
@@ -210,7 +175,7 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
         final MeModel meModel = new MeModel().single();
 
         if (meModel.avatar != null && network.hasConnection()) {
-            WBHttp.imgSetCIDownload(meModel.avatar, img_avatar);
+            WBHttp.imgURLLoad(mActivity.getApplicationContext(), meModel.avatar, img_avatar);
         }
 
         edit_txt_first_name.getEditText().setText(meModel.first_name);
@@ -231,7 +196,7 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
     }
 
     @Override
-    public void update() {
+    public void submit() {
         this.inputs.setInput("first_name", edit_txt_first_name.getEditText().getText());
         this.inputs.setInput("last_name", edit_txt_last_name.getEditText().getText());
         this.inputs.setInput("address", edit_txt_address.getEditText().getText());
@@ -253,11 +218,8 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 
             if (imageBitmap != null) {
-                // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-                Uri tempUri = WBFile.getImageUri(mActivity.getApplicationContext(), imageBitmap);
-
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
-                uriImage = new File(WBFile.getRealPathFromURI(tempUri, mActivity));
+                uriImage = WBFile.bmpToFile(mActivity, imageBitmap);
             }
         }
     }
@@ -270,5 +232,23 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
 
         String birthDay = "Birthday " + fullDate;
         btn_general_birthday.setText(birthDay);
+    }
+
+    @Override
+    public void showProgress() {
+        progressDialog = wbAlerts.progress("Updating Profile...", false);
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        progressDialog.cancel();
+    }
+
+    @Override
+    public void showError(String message) {
+        wbAlerts.error("Update Failed", message).show();
+
+        Timber.e("%s, Error: %s", TAG, message);
     }
 }

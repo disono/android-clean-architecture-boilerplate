@@ -10,10 +10,10 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.dependencies.ActivityBaseComponent;
-import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.MainPresenter;
+import disono.webmons.com.clean_architecture.presentation.presenters.interfaces.MainPresenter;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.settings.SettingsActivity;
-import disono.webmons.com.clean_architecture.presentation.ui.transitions.Sliders;
+import disono.webmons.com.dependencies.ActivityBaseComponent;
+import disono.webmons.com.utilities.animations.transitions.Sliders;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)

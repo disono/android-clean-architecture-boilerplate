@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 import disono.webmons.com.clean_architecture.R;
-import disono.webmons.com.clean_architecture.presentation.presenters.blueprint.MainPresenter;
-import disono.webmons.com.clean_architecture.utilities.ui.SnackbarFactory;
+import disono.webmons.com.clean_architecture.presentation.presenters.interfaces.MainPresenter;
+import disono.webmons.com.utilities.ui.SnackbarFactory;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
