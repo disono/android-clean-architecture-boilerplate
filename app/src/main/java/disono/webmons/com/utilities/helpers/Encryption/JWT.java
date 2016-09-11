@@ -1,4 +1,4 @@
-package disono.webmons.com.utilities.library.Encryption;
+package disono.webmons.com.utilities.helpers.Encryption;
 
 import java.util.Date;
 
@@ -51,7 +51,7 @@ public class JWT {
                     // unique identifier for the token (md5 of the sub and iat claims)
                     .setId(jti)
 
-                    .signWith(SignatureAlgorithm.HS256, Configurations.envString("JWT_SECRET"))
+                    .signWith(SignatureAlgorithm.HS256, WBSecurity.encodeBase64(meModel.single().secret_key))
                     .compact();
         }
 

@@ -23,7 +23,10 @@ is a starting blank template for Android Projects
 * **CircleImageView** [https://github.com/hdodenhof/CircleImageView](https://github.com/hdodenhof/CircleImageView)
 * **Material DateTime Picker - Select a time/date in style** [https://github.com/wdullaer/MaterialDateTimePicker](https://github.com/wdullaer/MaterialDateTimePicker)
 * **RippleEffect** [https://github.com/traex/RippleEffect](https://github.com/traex/RippleEffect)
-* **Picasso** [http://square.github.io/picasso/](http://square.github.io/picasso/)
+* **Picasso** [http://square.github.io/picasso](http://square.github.io/picasso)
+* **Socket.IO-client Java** [https://github.com/socketio/socket.io-client-java](https://github.com/socketio/socket.io-client-java)
+* **Firebase Cloud Messaging** [https://firebase.google.com/docs/cloud-messaging](https://firebase.google.com/docs/cloud-messaging)
+* **PayPal Android SDK** [https://github.com/paypal/PayPal-Android-SDK](https://github.com/paypal/PayPal-Android-SDK)
 
 # Utilities Usage
 ### Running Logic on Thread
@@ -271,6 +274,90 @@ Network network;
 network.connectionInfo().getString("type");
 // info
 network.connectionInfo().getString("info");
+```
+
+### SocketIO
+```sh
+@Inject
+SocketIOConnector socketIOConnector;
+
+socketIOConnector.setUp();
+// response
+Emitter.Listener onNewMessage = args -> mActivity.runOnUiThread(() -> {
+    String response = (String) args[0];
+    Log.i(TAG, "Response: " + response);
+});
+socketIOConnector.listen("recieved_message", onNewMessage);
+
+// connect
+socketIOConnector.connect();
+
+// sent data, message or what ever you
+socketIOConnector.sendString("send_message", "We will sent data here!");
+```
+
+### FireBase Cloud Messaging
+```sh
+Replace the google-service.json under app folder with your own.
+```
+
+### SIP Phone (ALPHA)
+```sh
+@Inject
+SIPManager sipManager;
+
+// register your phone to SIP server
+sipManager.registerSIP("your-SIP-provider", "username", "password", new SipRegistrationListener() {
+
+    @Override
+    public void onRegistering(String s) {
+        Log.i(TAG, "onRegistering");
+    }
+
+    @Override
+    public void onRegistrationDone(String s, long l) {
+        Log.i(TAG, "onRegistrationDone");
+        
+        // call someone after on registration
+        sipManager.startCallSIP("number-to-call");
+    }
+
+    @Override
+    public void onRegistrationFailed(String s, int i, String s1) {
+        Log.e(TAG, "onRegistrationFailed " + s1 + " " + s);
+    }
+});
+```
+
+### Helpers
+```sh
+File helpers
+FileWBFile.getBmpUri(Context context, Bitmap inImage);
+String WBFile.getRealPathFromURI(Activity activity, Uri uri);
+File WBFile.bmpToFile(Activity activity, Bitmap bitmap);
+
+Form helpers
+Spinner WBForm.defaultSpinner(Context context, int spinnerArray, Spinner spinner, AdapterView.OnItemSelectedListener onItemSelectedListener);
+
+HTTP helpers
+void WBHttp.imgURLLoad(Context context, String source, CircleImageView imageView);
+
+Security helpers
+String WBSecurity.MD5(String toHash);
+String WBSecurity.encodeBase64(String toConvert);
+String WBSecurity.decodeBase64(String converted);
+
+Encryption helpers
+String JWT.generateToken();
+
+Time helpers
+long WBTime.unix();
+long WBTime.unixTimeStamp();
+long WBTime.addMinuteUnix(int minute);
+Date WBTime.currentDate();
+Date WBTime.addMinuteDate(int minute);
+Date WBTime.minusMinuteDate(int minute);
+String WBTime.getMonthForInt(int num);
 ```
 
 # Other Resources

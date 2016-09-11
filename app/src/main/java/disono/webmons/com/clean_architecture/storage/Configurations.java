@@ -11,8 +11,7 @@ import disono.webmons.com.utilities.helpers.WBSecurity;
  */
 public class Configurations {
     private final static String _baseURL = "http://your-domain/api/v1/";
-    private final static String _baseSocketURI = "http://your-domain/api/v1/";
-    private final static String _JWT_SECRET = "";
+    private final static String _socketIOURL = "http://your-domain:port/";
 
     // token expiry date (minutes)
     private final static int _JWT_Exp = 60;
@@ -26,12 +25,11 @@ public class Configurations {
      * @return
      */
     public static String envString(String key) {
-        if (key.equals("baseURL")) {
-            return _baseURL;
-        } else if (key.equals("JWT_SECRET")) {
-            return WBSecurity.encodeBase64(_JWT_SECRET);
-        } else if (key.equals("baseSocketURI")) {
-            return _baseSocketURI;
+        switch (key) {
+            case "baseURL":
+                return _baseURL;
+            case "socketIOURL":
+                return _socketIOURL;
         }
 
         return null;

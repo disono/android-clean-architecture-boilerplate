@@ -93,5 +93,4 @@ public class MeSchema {
     public void setExtra(Object extra) {
         this.extra = extra;
     }
-
 }

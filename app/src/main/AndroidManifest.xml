@@ -36,7 +36,7 @@
         android:required="true" />
 
     <application
-        android:name="com.orm.SugarApp"
+        android:name=".AndroidApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -57,6 +57,23 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="disono.webmons.com.clean_architecture" />
+
+        <!--
+            FCM Services
+        -->
+        <service
+            android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FMessaging">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FRegister">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
 
         <!-- activities and fragments -->
         <activity

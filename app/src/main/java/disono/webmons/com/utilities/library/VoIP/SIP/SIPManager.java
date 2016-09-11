@@ -9,10 +9,9 @@ import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.net.sip.SipRegistrationListener;
+import android.util.Log;
 
 import java.text.ParseException;
-
-import timber.log.Timber;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -21,21 +20,21 @@ import timber.log.Timber;
  * Copyright 2016 Webmons Development Studio.
  * Created at: 8/22/2016 5:23 PM
  */
-public class Manager {
-    private final String TAG = "Manager:Class";
-    private Activity activity;
+public class SIPManager {
+    private final static String TAG = "SIPManager:Class";
+    private Activity mActivity;
     private Context ctx;
-
+    
     public SipManager mSipManager = null;
     public SipProfile mSipProfile = null;
-    SipAudioCall sipAudioCall = null;
+    public SipAudioCall mSipAudioCall = null;
 
-    public Manager(Activity activity) {
-        this.activity = activity;
-        ctx = this.activity.getApplication();
+    public SIPManager(Activity activity) {
+        this.mActivity = activity;
+        ctx = this.mActivity.getApplication();
 
         if (mSipManager == null) {
-            mSipManager = SipManager.newInstance(activity);
+            mSipManager = SipManager.newInstance(this.mActivity);
         }
     }
 
@@ -47,39 +46,46 @@ public class Manager {
      * @param password
      * @return
      */
-    public SipProfile register(String host, String username, String password, SipRegistrationListener sipRegistrationListener) {
+    public SipProfile registerSIP(String host, String username, String password, SipRegistrationListener sipRegistrationListener) {
         SipProfile.Builder builder;
 
         try {
             // create a SipProfile object
             builder = new SipProfile.Builder(username, host);
             builder.setPassword(password);
-            mSipProfile = builder.build();
+            this.mSipProfile = builder.build();
 
             // making calls and/or receiving generic SIP calls
             Intent intent = new Intent();
             intent.setAction("android.SipDemo.INCOMING_CALL");
             PendingIntent pendingIntent = PendingIntent.getBroadcast(ctx, 0, intent, Intent.FILL_IN_DATA);
-            mSipManager.open(mSipProfile, pendingIntent, null);
+            mSipManager.open(this.mSipProfile, pendingIntent, null);
 
             // tracks whether the SipProfile was successfully registered with your SIP service provider
             // https://developer.android.com/guide/topics/connectivity/sip.html
-            mSipManager.setRegistrationListener(mSipProfile.getUriString(), sipRegistrationListener);
+            mSipManager.setRegistrationListener(this.mSipProfile.getUriString(), sipRegistrationListener);
         } catch (ParseException | SipException e) {
-            Timber.e("%s, Error: %s", TAG, e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
 
-        return mSipProfile;
+        return this.mSipProfile;
     }
 
     /**
      * Make an audio call
+     * Set up a SipAudioCall.Listener. Much of the client's interaction with the SIP stack happens through listeners.
      */
-    public void startCall(String sipAddress) {
-        // set up a SipAudioCall.Listener. Much of the client's interaction with the SIP stack happens through listeners.
+    public void startCallSIP(String sipAddress) {
+        if (this.mSipProfile == null) {
+            Log.e(TAG, "Unable to start a call error, you need to initialize SIP profile builder.");
+            return;
+        }
+
         SipAudioCall.Listener listener = new SipAudioCall.Listener() {
             @Override
             public void onCallEstablished(SipAudioCall call) {
+                Log.i(TAG, "onCallEstablished");
+
                 call.startAudio();
                 call.setSpeakerMode(false);
                 call.toggleMute();
@@ -87,24 +93,25 @@ public class Manager {
 
             @Override
             public void onCallEnded(SipAudioCall call) {
-
+                // do something if call ended
+                Log.i(TAG, "onCallEnded");
             }
         };
 
         try {
-            this.sipAudioCall = mSipManager.makeAudioCall(mSipProfile.getUriString(), sipAddress, listener, 30);
+            this.mSipAudioCall = mSipManager.makeAudioCall(this.mSipProfile.getUriString(), sipAddress, listener, 300);
         } catch (SipException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Unable to start a call, " + e.getMessage());
         }
     }
 
     /**
      * End an audio call
      */
-    public void endCall() {
-        if (this.sipAudioCall != null) {
-            this.sipAudioCall.close();
-            this.sipAudioCall = null;
+    public void endCallSIP() {
+        if (this.mSipAudioCall != null) {
+            this.mSipAudioCall.close();
+            this.mSipAudioCall = null;
         }
     }
 
@@ -112,7 +119,7 @@ public class Manager {
      * If the application is done using a profile, it should close it to free associated objects
      * into memory and unregister the device from the server
      */
-    public void close() {
+    public void closeProfile() {
         if (mSipManager == null) {
             return;
         }
@@ -122,7 +129,7 @@ public class Manager {
                 mSipManager.close(mSipProfile.getUriString());
             }
         } catch (Exception e) {
-            Timber.e("%s, Error: Failed to close local profile, %s", TAG, e.getMessage());
+            Log.e(TAG, "Failed to close local profile, " + e.getMessage());
         }
     }
 }

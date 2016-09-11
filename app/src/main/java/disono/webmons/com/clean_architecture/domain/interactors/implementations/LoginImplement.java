@@ -90,6 +90,9 @@ public class LoginImplement extends AbstractInteractor implements LoginContract 
             meModel.email_confirmed = data.getEmailConfirmed();
             meModel.enabled = data.getEnabled();
 
+            meModel.secret_key = data.getSecretKey();
+            meModel.token_key = data.getTokenKey();
+
             meModel.save();
 
             // success

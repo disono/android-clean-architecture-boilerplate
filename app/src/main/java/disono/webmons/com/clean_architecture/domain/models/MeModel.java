@@ -35,6 +35,9 @@ public class MeModel extends SugarRecord implements MeRepository {
     public int email_confirmed = 0;
     public int enabled = 0;
 
+    public String secret_key = null;
+    public String token_key = null;
+
     // Default constructor is necessary for SugarRecord
     public MeModel() {
 

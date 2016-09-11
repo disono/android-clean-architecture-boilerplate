@@ -2,7 +2,8 @@ package disono.webmons.com.clean_architecture.storage.networks;
 
 import disono.webmons.com.clean_architecture.domain.models.MeModel;
 import disono.webmons.com.clean_architecture.storage.Configurations;
-import disono.webmons.com.utilities.library.Encryption.JWT;
+import disono.webmons.com.utilities.exception.WBConsole;
+import disono.webmons.com.utilities.helpers.Encryption.JWT;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
@@ -17,9 +18,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created at: 8/31/2016 12:52 PM
  */
 public class ServiceGenerator {
+    private static final String TAG = "ServiceGenerator:Class";
     public static final String API_BASE_URL = Configurations.envString("baseURL");
 
-    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+    private static OkHttpClient.Builder httpClient;
 
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
@@ -27,35 +29,23 @@ public class ServiceGenerator {
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create());
 
+    /**
+     * Create service
+     *
+     * @param serviceClass
+     * @param authToken
+     * @param <S>
+     * @return
+     */
     public static <S> S createService(Class<S> serviceClass, final String authToken) {
         MeModel meModel = new MeModel();
+        httpClient = new OkHttpClient.Builder();
 
-        if (authToken != null) {
-            if (meModel.check()) {
-                httpClient.addInterceptor(chain -> {
-                    Request original = chain.request();
-
-                    // Request customization: add request headers
-                    Request.Builder requestBuilder = original.newBuilder()
-                            .header("Authorization", "Bearer " + authToken)
-                            .method(original.method(), original.body());
-
-                    Request request = requestBuilder.build();
-                    return chain.proceed(request);
-                });
-
-                httpClient.addInterceptor(chain -> {
-                    Request original = chain.request();
-
-                    // Request customization: add request headers
-                    Request.Builder requestBuilder = original.newBuilder()
-                            .header("authenticated_id", Integer.toString(meModel.single().primary_id))
-                            .method(original.method(), original.body());
-
-                    Request request = requestBuilder.build();
-                    return chain.proceed(request);
-                });
-            }
+        // add http headers
+        if (authToken != null && meModel.check() &&
+                meModel.single().token_key != null && !meModel.single().token_key.equals("") &&
+                meModel.single().primary_id > 0 && !Integer.toString(meModel.single().primary_id).equals("")) {
+            _httpClient(authToken, meModel);
         }
 
         OkHttpClient client = httpClient.build();
@@ -63,11 +53,76 @@ public class ServiceGenerator {
         return retrofit.create(serviceClass);
     }
 
+    /**
+     * Create service without token
+     *
+     * @param serviceClass
+     * @param <S>
+     * @return
+     */
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null);
     }
 
+    /**
+     * Create service with token
+     *
+     * @param serviceClass
+     * @param <S>
+     * @return
+     */
     public static <S> S createServiceToken(Class<S> serviceClass) {
         return createService(serviceClass, JWT.generateToken());
+    }
+
+    /**
+     * Create http header
+     *
+     * @param authToken
+     * @param meModel
+     */
+    private static void _httpClient(String authToken, MeModel meModel) {
+        try {
+            // JWT token
+            httpClient.addInterceptor(chain -> {
+                Request original = chain.request();
+
+                // Request customization: add request headers
+                Request.Builder requestBuilder = original.newBuilder()
+                        .header("Authorization", "Bearer " + authToken)
+                        .method(original.method(), original.body());
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            });
+
+            // users id
+            httpClient.addInterceptor(chain -> {
+                Request original = chain.request();
+
+                // Request customization: add request headers
+                Request.Builder requestBuilder = original.newBuilder()
+                        .header("authenticated_id", Integer.toString(meModel.single().primary_id))
+                        .method(original.method(), original.body());
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            });
+
+            // token key
+            httpClient.addInterceptor(chain -> {
+                Request original = chain.request();
+
+                // Request customization: add request headers
+                Request.Builder requestBuilder = original.newBuilder()
+                        .header("token_key", meModel.single().token_key)
+                        .method(original.method(), original.body());
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            });
+        } catch (NullPointerException e) {
+            WBConsole.e(TAG, e.getMessage());
+        }
     }
 }

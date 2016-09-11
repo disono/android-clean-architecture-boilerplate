@@ -100,6 +100,9 @@ public class RegisterImplement extends AbstractInteractor implements RegisterCon
                 meModel.email_confirmed = data.getEmailConfirmed();
                 meModel.enabled = data.getEnabled();
 
+                meModel.secret_key = data.getSecretKey();
+                meModel.token_key = data.getTokenKey();
+
                 if (data.getEmailConfirmed() == 1) {
                     meModel.save();
                 }

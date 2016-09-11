@@ -11,6 +11,8 @@ import disono.webmons.com.utilities.library.LocalStorage;
 import disono.webmons.com.utilities.library.Mail.IMAP;
 import disono.webmons.com.utilities.library.Mail.SMTP;
 import disono.webmons.com.utilities.library.SMS;
+import disono.webmons.com.utilities.library.SocketIO.SocketIOConnector;
+import disono.webmons.com.utilities.library.VoIP.SIP.SIPManager;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -41,6 +43,12 @@ public class LibraryModule {
 
     @Provides
     @Singleton
+    public SIPManager provideSIPManager() {
+        return new SIPManager(activity);
+    }
+
+    @Provides
+    @Singleton
     public SMTP provideSMTP() {
         return new SMTP(activity);
     }
@@ -55,5 +63,11 @@ public class LibraryModule {
     @Singleton
     public WBAlerts provideWBAlerts() {
         return new WBAlerts(activity);
+    }
+
+    @Provides
+    @Singleton
+    public SocketIOConnector provideSocketIOConnector() {
+        return new SocketIOConnector(activity);
     }
 }

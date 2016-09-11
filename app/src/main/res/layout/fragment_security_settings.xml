@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/lbl_current_password"
-                android:inputType="text"
+                android:inputType="textPassword"
                 app:errorMessage="@string/error_message_empty"
                 app:errorType="empty" />
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/lbl_new_password"
-                android:inputType="text" />
+                android:inputType="textPassword" />
 
             <!-- submit -->
             <com.andexert.library.RippleView

@@ -2,6 +2,8 @@ package disono.webmons.com.clean_architecture;
 
 import android.app.Application;
 
+import com.orm.SugarContext;
+
 import disono.webmons.com.dependencies.ApplicationBaseComponent;
 import timber.log.Timber;
 
@@ -18,7 +20,13 @@ public class AndroidApplication extends Application {
         super.onCreate();
 
         ApplicationBaseComponent.inject(this);
-
         Timber.plant(new Timber.DebugTree());
+        SugarContext.init(this);
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        SugarContext.terminate();
     }
 }

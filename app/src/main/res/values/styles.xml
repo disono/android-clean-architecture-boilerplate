@@ -16,8 +16,8 @@
     </style>
 
     <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:textColor">@color/tw__blue_pressed_light</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/wb_white</item>
+        <item name="android:background">@color/wb_primary</item>
     </style>
 
     <!-- Slide -->

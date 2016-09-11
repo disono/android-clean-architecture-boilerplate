@@ -74,6 +74,12 @@ public class Data {
     @SerializedName("avatar")
     @Expose
     private String avatar;
+    @SerializedName("secret_key")
+    @Expose
+    private String secretKey;
+    @SerializedName("token_key")
+    @Expose
+    private String tokenKey;
 
     /**
      * @return The id
@@ -381,6 +387,34 @@ public class Data {
      */
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    /**
+     * @return The secretKey
+     */
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    /**
+     * @param secretKey The secret_key
+     */
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
+    /**
+     * @return The tokenKey
+     */
+    public String getTokenKey() {
+        return tokenKey;
+    }
+
+    /**
+     * @param tokenKey The token_key
+     */
+    public void setTokenKey(String tokenKey) {
+        this.tokenKey = tokenKey;
     }
 
 }

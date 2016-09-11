@@ -22,7 +22,7 @@ public class Country {
     private String createdAt;
     @SerializedName("updated_at")
     @Expose
-    private Object updatedAt;
+    private String updatedAt;
 
     /**
      * @return The id
@@ -83,14 +83,14 @@ public class Country {
     /**
      * @return The updatedAt
      */
-    public Object getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
     /**
      * @param updatedAt The updated_at
      */
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 

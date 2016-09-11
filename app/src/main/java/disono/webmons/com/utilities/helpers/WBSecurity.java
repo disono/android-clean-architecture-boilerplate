@@ -17,6 +17,12 @@ import timber.log.Timber;
 public class WBSecurity {
     private final static String TAG = "WBSecurity:Class";
 
+    /**
+     * MD5
+     *
+     * @param toHash
+     * @return
+     */
     public static String MD5(String toHash) {
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
@@ -39,11 +45,23 @@ public class WBSecurity {
         return null;
     }
 
+    /**
+     * Encode base 64
+     *
+     * @param toConvert
+     * @return
+     */
     public static String encodeBase64(String toConvert) {
         // encode data on your side using BASE64
         return Base64.encodeToString(toConvert.getBytes(), Base64.DEFAULT);
     }
 
+    /**
+     * Decode base 64
+     *
+     * @param converted
+     * @return
+     */
     public static String decodeBase64(String converted) {
         return new String(Base64.decode(converted, Base64.DEFAULT));
     }

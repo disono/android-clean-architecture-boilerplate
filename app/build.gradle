@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 24
@@ -12,6 +13,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -24,6 +26,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     productFlavors {
+    }
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g"
     }
 }
 
@@ -52,8 +58,11 @@ dependencies {
     compile 'com.google.dagger:dagger:2.2'
     compile 'com.android.support:cardview-v7:24.2.0'
     compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.github.nkzawa:socket.io-client:0.3.0'
     compile 'com.facebook.android:facebook-android-sdk:4.12.0'
     compile 'com.google.gms:google-services:3.0.0'
+    compile "com.google.firebase:firebase-messaging:9.0.2"
+    compile 'com.google.firebase:firebase-core:9.0.2'
     compile 'com.sun.mail:android-mail:1.5.5'
     compile 'com.sun.mail:android-activation:1.5.5'
     compile 'com.emmasuzuki:easyform:1.0.1'
@@ -69,4 +78,5 @@ dependencies {
     compile 'com.wdullaer:materialdatetimepicker:2.5.0'
     compile 'com.github.Hitta:RippleEffect:df5f9e4'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.paypal.sdk:paypal-android-sdk:2.14.5'
 }
