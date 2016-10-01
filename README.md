@@ -182,7 +182,7 @@ DialogFactory.error(ctx, "Title", "Message!",
 })).show();
 ```
 
-### Alers
+### Alerts
 ```sh
 @Inject
 WBAlerts wbAlerts;
