@@ -26,10 +26,16 @@ import disono.webmons.com.dependencies.modules.SensorModule;
 )
 public interface ActivityComponent {
     void inject(MainActivity mainActivity);
+
     void inject(LoginActivity loginActivity);
+
     void inject(RegisterActivity registerActivity);
+
     void inject(SettingsActivity settingsActivity);
+
     void inject(GeneralSettingsFragment generalSettingsFragment);
+
     void inject(SecuritySettingsFragment securitySettingsFragment);
+
     void inject(ForgotPasswordActivity forgotPasswordActivity);
 }

@@ -23,6 +23,7 @@ import disono.webmons.com.utilities.animations.transitions.Sliders;
  * Created at: 2016-04-12 11:26 AM
  */
 public class MainActivity extends AppCompatActivity implements MainPresenter.View {
+    private final static String TAG = "MainActivity:Activity";
     Activity mActivity;
 
     @Override

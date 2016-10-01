@@ -12,6 +12,15 @@
     <!-- default messages -->
     <string name="no_internet">No internet connection!</string>
 
+    <!-- call -->
+    <string name="lbl_call_identity">Retreiving Identity…</string>
+    <string name="btn_txt_call_ready">Ready</string>
+    <string name="btn_txt_call_end">End Call</string>
+
+    <!-- communication -->
+    <string name="contact_address">Person to contact</string>
+    <string name="talk">Talk</string>
+
     <!-- labels -->
     <string name="lbl_email">Email</string>
     <string name="lbl_first_name">First Name</string>
@@ -22,6 +31,7 @@
     <string name="lbl_phone">Phone</string>
     <string name="lbl_gender">Gender</string>
     <string name="lbl_password">Password</string>
+    <string name="lbl_birthday">Birthday</string>
     <string name="lbl_current_password">Current Password</string>
     <string name="lbl_new_password">New Password</string>
 

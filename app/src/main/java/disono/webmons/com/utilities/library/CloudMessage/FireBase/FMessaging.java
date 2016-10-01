@@ -40,7 +40,7 @@ public class FMessaging extends FirebaseMessagingService {
     // This method is only generating push notification
     // It is same as we did in earlier posts
     private void sendNotification(String messageBody) {
-        MeModel meModel  = new MeModel();
+        MeModel meModel = new MeModel();
 
         // received only if user is authenticated
         if (meModel.check()) {

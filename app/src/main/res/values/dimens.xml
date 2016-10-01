@@ -3,11 +3,18 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="default_padding">16dp</dimen>
     <dimen name="padding_left">16dp</dimen>
     <dimen name="padding_right">16dp</dimen>
+    <dimen name="padding_top">16dp</dimen>
+    <dimen name="padding_bottom">16dp</dimen>
 
-    <dimen name="margin_bottom">24dp</dimen>
-    <dimen name="margin_top">24dp</dimen>
-    <dimen name="margin_left">24dp</dimen>
-    <dimen name="margin_right">24dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="margin_bottom">8dp</dimen>
+    <dimen name="margin_top">8dp</dimen>
+    <dimen name="margin_left">8dp</dimen>
+    <dimen name="margin_right">8dp</dimen>
+
+    <dimen name="input_label_vertical_spacing">8dp</dimen>
+    <dimen name="input_label_horizontal_spacing">4dp</dimen>
 </resources>

@@ -1,7 +1,7 @@
 package disono.webmons.com.clean_architecture.storage.networks;
 
 import disono.webmons.com.clean_architecture.domain.models.MeModel;
-import disono.webmons.com.clean_architecture.storage.Configurations;
+import disono.webmons.com.Configurations;
 import disono.webmons.com.utilities.exception.WBConsole;
 import disono.webmons.com.utilities.helpers.Encryption.JWT;
 import okhttp3.OkHttpClient;

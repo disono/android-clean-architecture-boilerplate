@@ -1,6 +1,4 @@
-package disono.webmons.com.clean_architecture.storage;
-
-import disono.webmons.com.utilities.helpers.WBSecurity;
+package disono.webmons.com;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -18,6 +16,9 @@ public class Configurations {
     //  earliest point in time that the token can be used (minutes)
     private final static int _JWT_Nbf = 30;
 
+    // SIP
+    private final static String _SIPDomain = "";
+
     /**
      * String values
      *
@@ -30,6 +31,8 @@ public class Configurations {
                 return _baseURL;
             case "socketIOURL":
                 return _socketIOURL;
+            case "sipDomain":
+                return _SIPDomain;
         }
 
         return null;

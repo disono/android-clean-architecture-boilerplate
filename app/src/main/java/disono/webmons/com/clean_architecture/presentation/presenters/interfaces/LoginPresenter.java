@@ -14,21 +14,21 @@ import disono.webmons.com.clean_architecture.presentation.ui.BaseView;
 public interface LoginPresenter extends BasePresenter {
     // add your view methods
     interface View extends BaseView {
-        void dashboard(MeModel meModel);
+        void mainActivity(MeModel meModel);
 
-        void submit();
+        void registerActivity();
 
-        void forgot();
+        void forgotActivity();
 
         void listeners();
 
-        void forms();
+        void formInputs();
     }
 
-    // add your presenter methods
+    // add your watcher methods
     void submit();
 
-    void register();
+    void registerActivity();
 
-    void forgot();
+    void forgotActivity();
 }

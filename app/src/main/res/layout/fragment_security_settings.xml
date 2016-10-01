@@ -15,8 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/padding_left"
-            android:paddingRight="@dimen/padding_right"
+            android:padding="@dimen/default_padding"
             android:paddingTop="16dp">
 
             <!-- email -->
@@ -40,7 +39,8 @@
                 android:hint="@string/lbl_current_password"
                 android:inputType="textPassword"
                 app:errorMessage="@string/error_message_empty"
-                app:errorType="empty" />
+                app:errorType="empty"
+                android:layout_marginTop="@dimen/margin_top" />
 
             <!-- new password -->
             <com.emmasuzuki.easyform.EasyTextInputLayout
@@ -49,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/lbl_new_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:layout_marginTop="@dimen/margin_top" />
 
             <!-- submit -->
             <com.andexert.library.RippleView
@@ -61,10 +62,8 @@
                     android:id="@+id/btn_security_save"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_bottom"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:background="@color/wb_danger"
-                    android:padding="12dp"
+                    android:background="@color/wb_primary"
                     android:text="@string/btn_save" />
             </com.andexert.library.RippleView>
         </LinearLayout>

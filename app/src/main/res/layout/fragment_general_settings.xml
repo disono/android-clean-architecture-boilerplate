@@ -15,8 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/padding_left"
-            android:paddingRight="@dimen/padding_right"
+            android:padding="@dimen/default_padding"
             android:paddingTop="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,13 +23,13 @@
                 android:layout_width="142dp"
                 android:layout_height="142dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="18dp"
-                android:src="@drawable/ic_face_black" />
+                android:src="@drawable/ic_no_avatar" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_top">
 
                 <!-- first name -->
                 <com.emmasuzuki.easyform.EasyTextInputLayout
@@ -63,9 +62,17 @@
                 android:hint="@string/lbl_phone"
                 android:inputType="number"
                 app:errorMessage="@string/error_message_empty"
-                app:errorType="empty" />
+                app:errorType="empty"
+                android:layout_marginTop="@dimen/margin_top" />
 
             <!-- gender -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_gender"
+                style="@style/InputLabel"
+                android:layout_marginTop="@dimen/margin_top" />
+
             <Spinner
                 android:id="@+id/spinner_gender"
                 android:layout_width="fill_parent"
@@ -73,22 +80,18 @@
                 android:hint="@string/lbl_gender" />
 
             <!-- birthday -->
-            <com.andexert.library.RippleView
-                rv_centered="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/InputLabel">
 
-                <Button
-                    android:id="@+id/btn_general_birthday"
-                    android:layout_width="fill_parent"
+                <EditText
+                    android:id="@+id/edit_txt_general_birthday"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_bottom"
-                    android:layout_marginTop="@dimen/margin_top"
-                    android:background="@color/wb_light"
-                    android:padding="12dp"
-                    android:text="@string/btn_date"
-                    android:textColor="@color/wb_dark" />
-            </com.andexert.library.RippleView>
+                    android:hint="@string/lbl_birthday"
+                    android:layout_marginTop="@dimen/margin_top" />
+            </android.support.design.widget.TextInputLayout>
 
             <!-- address -->
             <com.emmasuzuki.easyform.EasyTextInputLayout
@@ -98,7 +101,8 @@
                 android:hint="@string/lbl_address"
                 android:inputType="text|textMultiLine"
                 app:errorMessage="@string/error_message_empty"
-                app:errorType="empty" />
+                app:errorType="empty"
+                android:layout_marginTop="@dimen/margin_top" />
 
             <!-- update -->
             <com.andexert.library.RippleView
@@ -110,9 +114,7 @@
                     android:id="@+id/btn_general_update"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_bottom"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:padding="12dp"
                     android:text="@string/btn_save" />
             </com.andexert.library.RippleView>
 
@@ -126,9 +128,8 @@
                     android:id="@+id/btn_general_logout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_bottom"
+                    android:layout_marginTop="@dimen/margin_top"
                     android:background="@color/wb_danger"
-                    android:padding="12dp"
                     android:text="@string/btn_logout" />
             </com.andexert.library.RippleView>
         </LinearLayout>

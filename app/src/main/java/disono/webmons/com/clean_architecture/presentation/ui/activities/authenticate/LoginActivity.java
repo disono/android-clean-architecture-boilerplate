@@ -69,11 +69,13 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         mActivity = this;
         Sliders.enter(mActivity);
 
+        // butterknife
         ButterKnife.bind(this);
 
         ActivityBaseComponent.inject(this);
         ActivityBaseComponent.component().inject(this);
 
+        // presenter
         loginPresenter = new LoginWatcher(
                 ThreadExecutor.getInstance(),
                 MainThreadImplement.getInstance(),
@@ -100,7 +102,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     }
 
     @Override
-    public void dashboard(MeModel meModel) {
+    public void mainActivity(MeModel meModel) {
         Intent intent = null;
 
         if (meModel.role.equals("client")) {
@@ -115,13 +117,13 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     }
 
     @Override
-    public void submit() {
+    public void registerActivity() {
         Intent intent = new Intent(mActivity, RegisterActivity.class);
         startActivity(intent);
     }
 
     @Override
-    public void forgot() {
+    public void forgotActivity() {
         Intent intent = new Intent(mActivity, ForgotPasswordActivity.class);
         startActivity(intent);
     }
@@ -129,12 +131,12 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     @Override
     public void listeners() {
         btn_login_submit.setOnClickListener(view -> loginPresenter.submit());
-        text_register.setOnClickListener(view -> loginPresenter.register());
-        text_forgot.setOnClickListener(view -> loginPresenter.forgot());
+        text_register.setOnClickListener(view -> loginPresenter.registerActivity());
+        text_forgot.setOnClickListener(view -> loginPresenter.forgotActivity());
     }
 
     @Override
-    public void forms() {
+    public void formInputs() {
         inputs.setInput("email", edit_txt_email.getEditText().getText());
         inputs.setInput("password", edit_txt_password.getEditText().getText());
     }

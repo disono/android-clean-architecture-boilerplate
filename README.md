@@ -301,32 +301,16 @@ socketIOConnector.sendString("send_message", "We will sent data here!");
 Replace the google-service.json under app folder with your own.
 ```
 
-### SIP Phone (ALPHA)
+### SIP Phone
 ```sh
-@Inject
-SIPManager sipManager;
+// start SIP Service
+startService(new Intent(getBaseContext(), SIPService.class));
 
-// register your phone to SIP server
-sipManager.registerSIP("your-SIP-provider", "username", "password", new SipRegistrationListener() {
+// stop SIP Service
+stopService(new Intent(getBaseContext(), SIPService.class));
 
-    @Override
-    public void onRegistering(String s) {
-        Log.i(TAG, "onRegistering");
-    }
-
-    @Override
-    public void onRegistrationDone(String s, long l) {
-        Log.i(TAG, "onRegistrationDone");
-        
-        // call someone after on registration
-        sipManager.startCallSIP("number-to-call");
-    }
-
-    @Override
-    public void onRegistrationFailed(String s, int i, String s1) {
-        Log.e(TAG, "onRegistrationFailed " + s1 + " " + s);
-    }
-});
+// start a call
+new SIPService().initiateCall(mActivity, "sip:name_to_call@domain");
 ```
 
 ### Helpers

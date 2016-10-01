@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.emmasuzuki.easyform.EasyTextInputLayout;
@@ -52,7 +54,7 @@ import timber.log.Timber;
  * Created at: 2016-04-12 11:26 AM
  */
 public class GeneralSettingsFragment extends Fragment implements GeneralSettingsPresenter.View, DatePickerDialog.OnDateSetListener {
-    private final String TAG = "GeneralSettingsFragment:Fragment";
+    private final static String TAG = "GeneralSettingsFragment:Fragment";
     private Activity mActivity;
     private GeneralSettingsPresenter generalSettingsPresenter;
     private Inputs inputs = new Inputs();
@@ -87,8 +89,8 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
     @BindView(R.id.spinner_gender)
     Spinner spinner_gender;
 
-    @BindView(R.id.btn_general_birthday)
-    Button btn_general_birthday;
+    @BindView(R.id.edit_txt_general_birthday)
+    EditText edit_txt_general_birthday;
 
     @BindView(R.id.btn_general_logout)
     Button btn_general_logout;
@@ -135,7 +137,11 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
         img_avatar.setOnClickListener(view -> startActivityForResult(launcher.takeIntentPicture(), REQUEST_IMAGE_CAPTURE));
 
         // date picker for birthday
-        btn_general_birthday.setOnClickListener(view -> DialogFactory.calendar(mActivity, GeneralSettingsFragment.this));
+        edit_txt_general_birthday.setFocusable(false);
+        edit_txt_general_birthday.setCursorVisible(false);
+        edit_txt_general_birthday.setBackgroundColor(Color.TRANSPARENT);
+        edit_txt_general_birthday.setClickable(true);
+        edit_txt_general_birthday.setOnClickListener(view -> DialogFactory.calendar(mActivity, GeneralSettingsFragment.this));
 
         // gender
         spinner_gender = WBForm.defaultSpinner(mActivity, R.array.spinner_gender, spinner_gender, new AdapterView.OnItemSelectedListener() {
@@ -191,8 +197,8 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
         }
 
         // birthday
-        String birthDay = "Birthday " + meModel.birthday;
-        btn_general_birthday.setText(birthDay);
+        String birthDay = meModel.birthday;
+        edit_txt_general_birthday.setText(birthDay);
     }
 
     @Override
@@ -229,9 +235,7 @@ public class GeneralSettingsFragment extends Fragment implements GeneralSettings
         String fullDate = WBTime.getMonthForInt(monthOfYear) + " " + dayOfMonth + ", " + year;
 
         this.inputs.setInput("birthday", fullDate);
-
-        String birthDay = "Birthday " + fullDate;
-        btn_general_birthday.setText(birthDay);
+        edit_txt_general_birthday.setText(fullDate);
     }
 
     @Override

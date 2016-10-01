@@ -1,7 +1,6 @@
 package disono.webmons.com.utilities.library.SocketIO;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 
 import com.github.nkzawa.emitter.Emitter;
@@ -12,7 +11,7 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
-import disono.webmons.com.clean_architecture.storage.Configurations;
+import disono.webmons.com.Configurations;
 
 /**
  * Author: Archie, Disono (disono.apd@gmail.com / webmonsph@gmail.com)
@@ -25,13 +24,11 @@ import disono.webmons.com.clean_architecture.storage.Configurations;
  */
 public class SocketIOConnector {
     private final String TAG = "SocketIO:Class";
-    private Activity activity;
-    private Context ctx;
+    private Activity mActivity;
     Socket mSocket;
 
     public SocketIOConnector(Activity activity) {
-        this.activity = activity;
-        ctx = this.activity.getApplication();
+        this.mActivity = activity;
     }
 
     /**

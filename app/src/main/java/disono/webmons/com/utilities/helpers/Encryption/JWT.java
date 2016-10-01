@@ -3,7 +3,7 @@ package disono.webmons.com.utilities.helpers.Encryption;
 import java.util.Date;
 
 import disono.webmons.com.clean_architecture.domain.models.MeModel;
-import disono.webmons.com.clean_architecture.storage.Configurations;
+import disono.webmons.com.Configurations;
 import disono.webmons.com.utilities.helpers.WBSecurity;
 import disono.webmons.com.utilities.helpers.WBTime;
 import io.jsonwebtoken.Jwts;

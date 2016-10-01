@@ -17,6 +17,9 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.USE_SIP" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- features -->
     <uses-feature
@@ -58,22 +61,32 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="disono.webmons.com.clean_architecture" />
 
-        <!--
-            FCM Services
-        -->
-        <service
-            android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FMessaging">
+        <!-- FCM Services -->
+        <service android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FMessaging">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FRegister">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
+        <!-- SIP Call Receiver -->
+        <receiver
+            android:name="disono.webmons.com.utilities.library.VoIP.SIP.IncomingCallReceiver"
+            android:label="Call Receiver" />
         <service
-            android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FRegister">
+            android:name="disono.webmons.com.clean_architecture.presentation.ui.activities.communication.voice.SIPService"
+            android:label="SIP Service" />
+        <!-- When the phone reboots -->
+        <receiver android:name="disono.webmons.com.clean_architecture.presentation.ui.activities.communication.voice.SIPReboot">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </service>
+        </receiver>
 
         <!-- activities and fragments -->
         <activity
@@ -85,7 +98,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".presentation.ui.activities.authenticate.LoginActivity"
             android:label="@string/txt_login" />
@@ -99,12 +111,13 @@
             android:name=".presentation.ui.activities.authenticate.SocialAuthActivity"
             android:label="@string/txt_social" />
         <activity android:name=".presentation.ui.activities.MainActivity" />
-
         <activity
             android:name=".presentation.ui.activities.settings.SettingsActivity"
             android:label="@string/txt_settings" />
-
         <activity android:name=".presentation.ui.activities.demo.DemoListActivity" />
+
+        <!-- SIP/VoIP -->
+        <activity android:name=".presentation.ui.activities.communication.voice.WalkieTalkieActivity" />
     </application>
 
 </manifest>

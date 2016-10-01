@@ -23,7 +23,7 @@ public class FRegister extends FirebaseInstanceIdService {
 
     @Override
     public void onTokenRefresh() {
-        MeModel meModel  = new MeModel();
+        MeModel meModel = new MeModel();
 
         // send the registration if authenticated
         if (meModel.check()) {

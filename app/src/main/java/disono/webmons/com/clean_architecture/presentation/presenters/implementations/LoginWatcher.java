@@ -73,18 +73,18 @@ public class LoginWatcher extends AbstractPresenter implements LoginPresenter, L
     @Override
     public void submit() {
         this.mView.showProgress();
-        this.mView.forms();
+        this.mView.formInputs();
         this.authenticationInteractor.execute();
     }
 
     @Override
-    public void register() {
-        this.mView.submit();
+    public void registerActivity() {
+        this.mView.registerActivity();
     }
 
     @Override
-    public void forgot() {
-        this.mView.forgot();
+    public void forgotActivity() {
+        this.mView.forgotActivity();
     }
 
     @Override
@@ -96,6 +96,6 @@ public class LoginWatcher extends AbstractPresenter implements LoginPresenter, L
     @Override
     public void success(MeModel meModel) {
         this.mView.hideProgress();
-        this.mView.dashboard(meModel);
+        this.mView.mainActivity(meModel);
     }
 }

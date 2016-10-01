@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import disono.webmons.com.clean_architecture.R;
 import disono.webmons.com.clean_architecture.domain.models.MeModel;
-import disono.webmons.com.clean_architecture.presentation.presenters.interfaces.MainPresenter.View;
 import disono.webmons.com.clean_architecture.presentation.ui.activities.authenticate.LoginActivity;
 import me.wangyuwei.particleview.ParticleView;
 
@@ -19,7 +18,7 @@ import me.wangyuwei.particleview.ParticleView;
  * Copyright 2016 Webmons Development Studio.
  * Created at: 2016-04-25 11:26 AM
  */
-public class SplashActivity extends AppCompatActivity implements View {
+public class SplashActivity extends AppCompatActivity {
     private Activity mActivity;
 
     // Splash screen timer
@@ -54,20 +53,5 @@ public class SplashActivity extends AppCompatActivity implements View {
             startActivity(intent);
             finish();
         }, SPLASH_TIME_OUT);
-    }
-
-    @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
-    public void showError(String message) {
-
     }
 }
