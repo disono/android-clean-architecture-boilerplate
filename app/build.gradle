@@ -91,4 +91,5 @@ dependencies {
     compile 'com.github.Hitta:RippleEffect:df5f9e4'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.paypal.sdk:paypal-android-sdk:2.14.5'
+    compile 'org.apache.commons:commons-lang3:3.4'
 }

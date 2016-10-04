@@ -44,7 +44,7 @@ MainThreadImp.getInstance().post(new Runnable() {
 @Inject
 Launcher launcher;
 
-REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE;
+int REQUEST_IMAGE_CAPTURE = launcher.REQUEST_IMAGE_CAPTURE;
 launcher.takePicture();
 
 // on activity result
@@ -54,8 +54,25 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     Bundle extras = data.getExtras();
     Bitmap imageBitmap = (Bitmap) extras.get("data");
     if (imageBitmap != null) {
-      // location imageBitmap.toString()
+      // location: imageBitmap.toString()
     }
+  }
+}
+```
+
+### Video
+```sh
+@Inject
+Launcher launcher;
+
+int REQUEST_VIDEO_CAPTURE = launcher.REQUEST_VIDEO_CAPTURE;
+launcher.takeVideo();
+
+// on activity result
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+    // video file: launcher.videoFile(data);
   }
 }
 ```

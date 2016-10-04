@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
@@ -61,5 +63,15 @@ public class WBFile {
 
         // CALL THIS METHOD TO GET THE ACTUAL PATH
         return new File(WBFile.getRealPathFromURI(activity, tempUri));
+    }
+
+    /**
+     * Create random string
+     *
+     * @param num
+     * @return
+     */
+    public static String randomString(int num) {
+        return RandomStringUtils.randomAlphabetic(num);
     }
 }
