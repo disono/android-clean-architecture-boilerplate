@@ -27,6 +27,7 @@ is a starting blank template for Android Projects
 * **Socket.IO-client Java** [https://github.com/socketio/socket.io-client-java](https://github.com/socketio/socket.io-client-java)
 * **Firebase Cloud Messaging** [https://firebase.google.com/docs/cloud-messaging](https://firebase.google.com/docs/cloud-messaging)
 * **PayPal Android SDK** [https://github.com/paypal/PayPal-Android-SDK](https://github.com/paypal/PayPal-Android-SDK)
+* **PhotoView** [https://github.com/chrisbanes/PhotoView](https://github.com/chrisbanes/PhotoView)
 
 # Utilities Usage
 ### Running Logic on Thread
