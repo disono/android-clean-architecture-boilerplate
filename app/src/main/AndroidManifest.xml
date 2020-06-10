@@ -1,123 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="disono.webmons.com.clean_architecture">
-
-    <!-- permissions -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.USE_SIP" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-    <!-- features -->
-    <uses-feature
-        android:name="android.hardware.sensor.accelerometer"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.sip.voip"
-        android:required="true" />
-    <uses-feature
-        android:name="android.hardware.wifi"
-        android:required="true" />
-    <uses-feature
-        android:name="android.hardware.microphone"
-        android:required="true" />
+          package="com.webmons">
 
     <application
-        android:name=".AndroidApplication"
-        android:allowBackup="true"
-        android:icon="@drawable/icon"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:replace="android:icon">
-
-        <!-- database -->
-        <meta-data
-            android:name="DATABASE"
-            android:value="disono_webmons_com_clean_architecture.db" />
-        <meta-data
-            android:name="VERSION"
-            android:value="1" />
-        <meta-data
-            android:name="QUERY_LOG"
-            android:value="true" />
-        <meta-data
-            android:name="DOMAIN_PACKAGE_NAME"
-            android:value="disono.webmons.com.clean_architecture" />
-
-        <!-- FCM Services -->
-        <service android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FMessaging">
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name="disono.webmons.com.utilities.library.CloudMessage.FireBase.FRegister">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
+                <action android:name="android.intent.action.MAIN"/>
 
-        <!-- SIP Call Receiver -->
-        <receiver
-            android:name="disono.webmons.com.utilities.library.VoIP.SIP.IncomingCallReceiver"
-            android:label="Call Receiver" />
-        <service
-            android:name="disono.webmons.com.clean_architecture.presentation.ui.activities.communication.voice.SIPService"
-            android:label="SIP Service" />
-        <!-- When the phone reboots -->
-        <receiver android:name="disono.webmons.com.clean_architecture.presentation.ui.activities.communication.voice.SIPReboot">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
-
-        <!-- activities and fragments -->
-        <activity
-            android:name=".presentation.ui.activities.SplashActivity"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.ui.activities.authenticate.LoginActivity"
-            android:label="@string/txt_login" />
-        <activity
-            android:name=".presentation.ui.activities.authenticate.RegisterActivity"
-            android:label="@string/txt_register" />
-        <activity
-            android:name=".presentation.ui.activities.authenticate.ForgotPasswordActivity"
-            android:label="@string/txt_forgot" />
-        <activity
-            android:name=".presentation.ui.activities.authenticate.SocialAuthActivity"
-            android:label="@string/txt_social" />
-        <activity android:name=".presentation.ui.activities.MainActivity" />
-        <activity
-            android:name=".presentation.ui.activities.settings.SettingsActivity"
-            android:label="@string/txt_settings" />
-        <activity android:name=".presentation.ui.activities.demo.DemoListActivity" />
-
-        <!-- SIP/VoIP -->
-        <activity android:name=".presentation.ui.activities.communication.voice.WalkieTalkieActivity" />
     </application>
 
 </manifest>

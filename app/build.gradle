@@ -1,96 +1,40 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '23.0.3'
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "disono.webmons.com.clean_architecture"
-        vectorDrawables.useSupportLibrary = true
-        minSdkVersion 16
-        targetSdkVersion 24
+        applicationId "com.webmons"
+        minSdkVersion 19
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '28.0.3'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    productFlavors {
-    }
-    dexOptions {
-        jumboMode = true
-        javaMaxHeapSize "4g"
-    }
-    packagingOptions {
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/MANIFEST.MF'
-
-        // avoid warning for "Not all execution paths return a value"
-        return true
-    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
-    apt 'com.google.dagger:dagger-compiler:2.2'
-    provided 'javax.annotation:jsr250-api:1.0'
-    compile('com.twitter.sdk.android:twitter:1.13.1@aar') {
-        transitive = true
-    }
-    compile files('libs/additionnal.jar')
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.jakewharton.timber:timber:4.1.2'
-    compile 'com.jakewharton:butterknife:8.0.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'io.reactivex:rxjava:1.1.3'
-    compile 'com.google.dagger:dagger:2.2'
-    compile 'com.android.support:cardview-v7:24.2.1'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile('com.github.nkzawa:socket.io-client:0.3.0') {
-        exclude group: 'org.json', module: 'json'
-    }
-    compile 'com.facebook.android:facebook-android-sdk:4.12.0'
-    compile 'com.google.gms:google-services:3.0.0'
-    compile "com.google.firebase:firebase-messaging:9.0.2"
-    compile 'com.google.firebase:firebase-core:9.0.2'
-    compile 'com.sun.mail:android-mail:1.5.5'
-    compile 'com.sun.mail:android-activation:1.5.5'
-    compile 'com.emmasuzuki:easyform:1.0.1'
-    compile 'cn.pedant.sweetalert:library:1.3'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.8.2'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.2'
-    compile 'com.github.satyan:sugar:1.5'
-    compile 'io.jsonwebtoken:jjwt:0.6.0'
-    compile 'me.wangyuwei:ParticleView:1.0.1'
-    compile 'com.android.support:support-v13:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.wdullaer:materialdatetimepicker:2.5.0'
-    compile 'com.github.Hitta:RippleEffect:df5f9e4'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.paypal.sdk:paypal-android-sdk:2.14.5'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    compile 'com.github.chrisbanes:PhotoView:1.3.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.2-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
+    implementation 'com.google.android.material:material:1.0.0'
 }
